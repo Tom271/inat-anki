@@ -182,3 +182,12 @@ def test_wikipedia_url(breeds):
 def test_bad_breed_rejected(breed):
     with pytest.raises(BreedsError):
         parse_breeds({"breed": [breed]})
+
+
+def test_search_phrase(breeds):
+    from inat_anki.breeds import search_phrase
+
+    by_key = {b.key: b for b in breeds}
+    assert search_phrase(by_key["sheep/lleyn"]) == "Lleyn sheep"
+    assert search_phrase(by_key["sheep/mule"]) == "Mule sheep"  # explicit `search`
+    assert search_phrase(by_key["pig/tamworth"]) == "Tamworth pig"

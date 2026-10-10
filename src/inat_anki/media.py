@@ -5,7 +5,7 @@ from collections.abc import Callable, Iterable, Mapping
 from pathlib import Path
 
 from inat_anki.api import ApiError, INatClient
-from inat_anki.model import Photo, PhotoDownload, PhotoRecord
+from inat_anki.model import ChosenPhoto, Photo, PhotoDownload, PhotoRecord
 from inat_anki.state import write_atomic
 
 # Magic numbers of the image formats iNat serves.
@@ -41,6 +41,14 @@ def scan_cache(media_dir: Path, photos: Mapping[int, PhotoRecord]) -> set[int]:
     return ok
 
 
+def fetch_image(client: INatClient, url: str, path: Path, expected_bytes: int) -> bytes:
+    data = client.download(url, expected_bytes)
+    if not looks_like_image(data):
+        raise CorruptPhotoError(f"{url} did not return an image")
+    write_atomic(path, data)
+    return data
+
+
 def download_photo(
     client: INatClient,
     download: PhotoDownload,
@@ -49,10 +57,7 @@ def download_photo(
     media_dir: Path,
     expected_bytes: int,
 ) -> PhotoRecord:
-    data = client.download(download.url, expected_bytes)
-    if not looks_like_image(data):
-        raise CorruptPhotoError(f"{download.url} did not return an image")
-    write_atomic(media_dir / download.filename, data)
+    data = fetch_image(client, download.url, media_dir / download.filename, expected_bytes)
     return PhotoRecord(
         filename=download.filename,
         size=size,
@@ -61,6 +66,40 @@ def download_photo(
         attribution=photo.attribution,
         sha256=sha256(data),
     )
+
+
+def download_chosen(
+    client: INatClient,
+    photos: Iterable[ChosenPhoto],
+    size: str,
+    media_dir: Path,
+    expected_bytes: int,
+    on_saved: Callable[[ChosenPhoto, PhotoRecord], None],
+    on_failed: Callable[[ChosenPhoto, Exception], None],
+) -> None:
+    """Like download_all, for photos chosen for species and breed cards."""
+    for p in photos:
+        try:
+            data = fetch_image(client, p.url, media_dir / p.filename, expected_bytes)
+        except CorruptPhotoError as e:
+            on_failed(p, e)
+            continue
+        except ApiError as e:
+            if e.status is None or e.status == 429 or e.status >= 500:
+                raise
+            on_failed(p, e)
+            continue
+        on_saved(
+            p,
+            PhotoRecord(
+                filename=p.filename,
+                size=size,
+                bytes=len(data),
+                license_code=p.license or None,
+                attribution=p.credit_html,
+                sha256=sha256(data),
+            ),
+        )
 
 
 def download_all(

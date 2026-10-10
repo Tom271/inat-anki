@@ -10,7 +10,17 @@ from html import escape, unescape
 
 from inat_anki.model import Breed, ChosenPhoto, CommonsFile
 
-BREED_KEYS = {"key", "name", "species", "taxon_id", "commons_category", "wikipedia", "photos"}
+BREED_KEYS = {
+    "key",
+    "name",
+    "species",
+    "taxon_id",
+    "commons_category",
+    "wikipedia",
+    "photos",
+    "search",
+}
+OPTIONAL_KEYS = {"photos", "search"}
 BREED_KEY_RE = re.compile(r"^(cattle|sheep|pig)/[a-z0-9-]+$")
 MIN_LONG_SIDE = 1024
 COMMONS_FILE_URL = "https://commons.wikimedia.org/wiki/{title}"
@@ -32,7 +42,7 @@ def parse_breeds(raw: dict) -> list[Breed]:
         bad = set(b) - BREED_KEYS
         if bad:
             raise BreedsError(f"{where}: unknown field(s): {', '.join(sorted(bad))}")
-        missing = BREED_KEYS - {"photos"} - set(b)
+        missing = BREED_KEYS - OPTIONAL_KEYS - set(b)
         if missing:
             raise BreedsError(f"{where}: missing field(s): {', '.join(sorted(missing))}")
         if not BREED_KEY_RE.match(b["key"]):
@@ -57,6 +67,10 @@ def parse_breeds(raw: dict) -> list[Breed]:
 
 def breed_kind(breed: Breed) -> str:
     return breed.key.split("/", 1)[0]
+
+
+def search_phrase(breed: Breed) -> str:
+    return breed.search or f"{breed.name} {breed_kind(breed)}"
 
 
 def wikipedia_url(breed: Breed) -> str:
@@ -139,6 +153,7 @@ def to_chosen(f: CommonsFile) -> ChosenPhoto:
         url=f.thumb_url,
         credit_html=commons_credit(f),
         source_id=f.title,
+        license=f.license,
     )
 
 
