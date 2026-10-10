@@ -2,6 +2,7 @@ import json
 import re
 import sqlite3
 import zipfile
+from datetime import datetime
 
 import pytest
 import responses
@@ -258,3 +259,14 @@ def test_missing_user_rejected(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     with pytest.raises(cli.UsageError):
         cli.resolve_settings(cli.build_parser().parse_args(["sync"]))
+
+
+@responses.activate
+def test_default_out_name_has_user_and_date(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    mock_api(OBS["results"])
+    clock = FakeClock(start=datetime(2026, 10, 10, 12, 0).timestamp())
+    run(tmp_path, clock=clock, out=None)
+    assert (tmp_path / "iNaturalist-example_user-2026-10-10.apkg").is_file()
+    report = json.loads((tmp_path / "cache" / "last-run.json").read_text())
+    assert report["deck"] == "iNaturalist-example_user-2026-10-10.apkg"

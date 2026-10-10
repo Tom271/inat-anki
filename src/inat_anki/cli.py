@@ -34,7 +34,7 @@ UK_PLACE_ID = 6857  # "United Kingdom"; see docs/api-notes.md
 
 DEFAULTS = {
     "user": None,
-    "out": "iNaturalist.apkg",
+    "out": None,  # default_out_name(): iNaturalist-<user>-<YYYY-MM-DD>.apkg
     "cache_dir": "inat-cache",
     "photo_size": "large",
     "refresh_photos": False,
@@ -72,7 +72,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     # Defaults are None so we can tell which flags were given; DEFAULTS fills the rest.
     sync.add_argument("--user", help="iNaturalist login")
-    sync.add_argument("--out", help=f"output .apkg (default {DEFAULTS['out']})")
+    sync.add_argument("--out", help="output .apkg (default ./iNaturalist-<user>-<YYYY-MM-DD>.apkg)")
     sync.add_argument(
         "--cache-dir", help=f"photo cache and state (default {DEFAULTS['cache_dir']})"
     )
@@ -212,6 +212,11 @@ class Report:
         if self.interrupted:
             out.append("Interrupted: run the same command again to resume.")
         return out
+
+
+def default_out_name(login: str, now: float) -> str:
+    """Named after the user and the local date of the run."""
+    return f"iNaturalist-{login}-{datetime.fromtimestamp(now).date().isoformat()}.apkg"
 
 
 def fmt_bytes(n: float) -> str:
@@ -391,7 +396,7 @@ def sync(
         else:
             to_package = ready
 
-        out_path = Path(settings["out"])
+        out_path = Path(settings["out"] or default_out_name(login, clock.time()))
         if to_package:
             deck.build_package([notes[i] for i in to_package], media_dir, out_path)
             report.deck, report.notes_in_deck = str(out_path), len(to_package)
