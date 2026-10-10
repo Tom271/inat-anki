@@ -78,8 +78,8 @@ come from Wikimedia Commons.
 
 - **Your sightings:** species you have observed are tagged `inat::seen`. Set `seen_by`
   in the sets file, or pass `--seen-by ""` when building a deck to share.
-- **Run time:** the first run makes about 1,300 requests (20 to 30 minutes, at 1 request
-  per second) and asks before downloading. Later runs make a few dozen requests.
+- **Run time:** the first run makes about 1,300 requests (about 30 minutes, at 0.8
+  requests per second) and asks before downloading. Later runs make a few dozen requests.
 - **Sticky groups:** groups only grow. Use `--rerank` to rebuild them from the current
   ranking.
 - **Breed photos:** run `inat-anki species --suggest-breed-photos` to get a page of

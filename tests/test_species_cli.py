@@ -264,3 +264,6 @@ def test_cli_parses_species():
     args = cli.build_parser().parse_args(["species", "--only", "birds", "--dry-run"])
     s = cli.resolve_species_settings(args)
     assert (s["only"], s["dry_run"], s["cache_dir"]) == ("birds", True, "inat-cache-species")
+    assert s["rate"] == 0.8 and s["interval"] == 1.25
+    assert cli.resolve_species_settings(
+        cli.build_parser().parse_args(["species", "--rate", "1.1"]))["interval"] == 0.91

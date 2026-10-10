@@ -158,7 +158,7 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--warn-threshold", type=int, help="default 200")
     sp.add_argument("--max-downloads", type=int)
     sp.add_argument("--yes", "-y", action="store_true", default=None)
-    sp.add_argument("--rate", type=float, help="requests per second (default 1.0, max 1.1)")
+    sp.add_argument("--rate", type=float, help="requests per second (default 0.8, max 1.1)")
     sp.add_argument(
         "--dry-run",
         action="store_true",
@@ -185,7 +185,7 @@ SPECIES_DEFAULTS = {
     "warn_threshold": 200,
     "max_downloads": None,
     "yes": False,
-    "rate": 1.0,
+    "rate": 0.8,  # slower than sync: 1/s drew HTTP 429s on the first live build
     "dry_run": False,
     "prune": False,
     "force": False,

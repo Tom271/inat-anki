@@ -402,7 +402,7 @@ Two photos per breed, from Wikimedia Commons, through the MediaWiki API
    value when there is one; then `LicenseShortName` linked to `LicenseUrl`; then a link
    to the file's description page.
 7. **Etiquette:** a `User-Agent` with the project URL, as Wikimedia's policy requires.
-   Requests are made one at a time, through the same 1 request/s throttle as iNat. Commons
+   Requests are made one at a time, through the same throttle as iNat. Commons
    API requests also send `maxlag=5`.
 
 ### 6.3 Licence policies
@@ -473,12 +473,17 @@ The run report is v1's, plus:
 | Photo downloads (400 × 2) | about 800 | new or replaced photos only |
 | Commons: breed categories (25), file searches (25) and licence re-checks (1 per 50 files) | about 51 | 1 |
 | Breed photo downloads (25 × 2) | 50 | new or replaced photos only |
-| **Total** | **about 1,335 requests, about 22 min** | **about 21 requests** |
+| **Total** | **about 1,335 requests, about 28 min** | **about 21 requests** |
 
 CC photos on the S3 host were about 212 KB at `large` in the v1 sample, so the first run
 is about 170 to 530 MB. That's far under the 4.5 GB per hour limit. The first run goes
 over the 200-photo warning threshold and asks for confirmation, and it can be resumed
 (v1 section 6).
+
+**Rate:** `inat-anki species` defaults to **0.8 requests per second**, while `sync` stays at
+1.0. The first live build, on 2026-10-10 at 1 request/s, drew 10 HTTP 429 responses during
+the photo searches. All of them recovered on the first retry, but the throttling showed
+that iNat considered us to be at its limit. `--rate` still accepts up to 1.1.
 
 ## 9. Code structure
 
