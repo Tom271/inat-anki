@@ -1,0 +1,715 @@
+{
+  "query": {
+    "pages": [
+      {
+        "pageid": 387156,
+        "ns": 6,
+        "title": "File:Haltiala 2004 lehmä 2.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 283451,
+            "width": 1280,
+            "height": 960,
+            "thumburl": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Haltiala_2004_lehm%C3%A4_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+            "thumbwidth": 1024,
+            "thumbheight": 768,
+            "thumbattribs": {
+              "src": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Haltiala_2004_lehm%C3%A4_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 768
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Haltiala_2004_lehm%C3%A4_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Haltiala_2004_lehm%C3%A4_2.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=387156",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u0\">Photographer 0</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY-SA 3.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "http://creativecommons.org/licenses/by-sa/3.0/",
+                "source": "commons-desc-page"
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-sa-3.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "image/jpeg"
+          }
+        ]
+      },
+      {
+        "pageid": 49944954,
+        "ns": 6,
+        "title": "File:Haltiala farm, kotieläimiä, domestic animals.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 3520398,
+            "width": 5184,
+            "height": 1487,
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Haltiala_farm%2C_kotiel%C3%A4imi%C3%A4%2C_domestic_animals.jpg/1280px-Haltiala_farm%2C_kotiel%C3%A4imi%C3%A4%2C_domestic_animals.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1024,
+            "thumbheight": 294,
+            "responsiveUrls": {
+              "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Haltiala_farm%2C_kotiel%C3%A4imi%C3%A4%2C_domestic_animals.jpg/3840px-Haltiala_farm%2C_kotiel%C3%A4imi%C3%A4%2C_domestic_animals.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Haltiala_farm%2C_kotiel%C3%A4imi%C3%A4%2C_domestic_animals.jpg/1280px-Haltiala_farm%2C_kotiel%C3%A4imi%C3%A4%2C_domestic_animals.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 294,
+              "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Haltiala_farm%2C_kotiel%C3%A4imi%C3%A4%2C_domestic_animals.jpg/3840px-Haltiala_farm%2C_kotiel%C3%A4imi%C3%A4%2C_domestic_animals.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/3/37/Haltiala_farm%2C_kotiel%C3%A4imi%C3%A4%2C_domestic_animals.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Haltiala_farm,_kotiel%C3%A4imi%C3%A4,_domestic_animals.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=49944954",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u1\">Photographer 1</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY-SA 4.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by-sa/4.0",
+                "source": "commons-desc-page"
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-sa-4.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "image/jpeg"
+          }
+        ]
+      },
+      {
+        "pageid": 78769942,
+        "ns": 6,
+        "title": "File:2ResHerefordFLJS 9433 (45092173072).jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 3003388,
+            "width": 2100,
+            "height": 1500,
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/2ResHerefordFLJS_9433_%2845092173072%29.jpg/1280px-2ResHerefordFLJS_9433_%2845092173072%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1024,
+            "thumbheight": 731,
+            "responsiveUrls": {
+              "2": "https://upload.wikimedia.org/wikipedia/commons/7/7a/2ResHerefordFLJS_9433_%2845092173072%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/2ResHerefordFLJS_9433_%2845092173072%29.jpg/1280px-2ResHerefordFLJS_9433_%2845092173072%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 731,
+              "srcset": "https://upload.wikimedia.org/wikipedia/commons/7/7a/2ResHerefordFLJS_9433_%2845092173072%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/2ResHerefordFLJS_9433_%2845092173072%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:2ResHerefordFLJS_9433_(45092173072).jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=78769942",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u2\">Photographer 2</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "image/jpeg"
+          }
+        ]
+      },
+      {
+        "pageid": 78769955,
+        "ns": 6,
+        "title": "File:1ChHerefordFLJS 9424 (30203031277).jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 2993100,
+            "width": 2100,
+            "height": 1500,
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/1ChHerefordFLJS_9424_%2830203031277%29.jpg/1280px-1ChHerefordFLJS_9424_%2830203031277%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1024,
+            "thumbheight": 731,
+            "responsiveUrls": {
+              "2": "https://upload.wikimedia.org/wikipedia/commons/4/4c/1ChHerefordFLJS_9424_%2830203031277%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/1ChHerefordFLJS_9424_%2830203031277%29.jpg/1280px-1ChHerefordFLJS_9424_%2830203031277%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 731,
+              "srcset": "https://upload.wikimedia.org/wikipedia/commons/4/4c/1ChHerefordFLJS_9424_%2830203031277%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/1ChHerefordFLJS_9424_%2830203031277%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:1ChHerefordFLJS_9424_(30203031277).jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=78769955",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u3\">Photographer 3</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY 2.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by/2.0",
+                "source": "commons-desc-page"
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-2.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "image/jpeg"
+          }
+        ]
+      },
+      {
+        "pageid": 91592717,
+        "ns": 6,
+        "title": "File:El Bóalo 1975.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 438224,
+            "width": 996,
+            "height": 598,
+            "thumburl": "https://upload.wikimedia.org/wikipedia/commons/b/b4/El_B%C3%B3alo_1975.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+            "thumbwidth": 1024,
+            "thumbheight": 615,
+            "thumbattribs": {
+              "src": "https://upload.wikimedia.org/wikipedia/commons/b/b4/El_B%C3%B3alo_1975.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 615
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/El_B%C3%B3alo_1975.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:El_B%C3%B3alo_1975.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=91592717",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u4\">Photographer 4</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY-SA 4.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by-sa/4.0",
+                "source": "commons-desc-page"
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-sa-4.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "image/jpeg"
+          }
+        ]
+      },
+      {
+        "pageid": 94994648,
+        "ns": 6,
+        "title": "File:\"I'm not entirely sure about you\".jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 2990050,
+            "width": 4000,
+            "height": 2248,
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/%22I%27m_not_entirely_sure_about_you%22.jpg/1280px-%22I%27m_not_entirely_sure_about_you%22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1024,
+            "thumbheight": 575,
+            "responsiveUrls": {
+              "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/%22I%27m_not_entirely_sure_about_you%22.jpg/3840px-%22I%27m_not_entirely_sure_about_you%22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/%22I%27m_not_entirely_sure_about_you%22.jpg/1280px-%22I%27m_not_entirely_sure_about_you%22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 575,
+              "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/%22I%27m_not_entirely_sure_about_you%22.jpg/3840px-%22I%27m_not_entirely_sure_about_you%22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/%22I%27m_not_entirely_sure_about_you%22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:%22I%27m_not_entirely_sure_about_you%22.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=94994648",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u5\">Photographer 5</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY-SA 4.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by-sa/4.0",
+                "source": "commons-desc-page"
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-sa-4.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "image/jpeg"
+          }
+        ]
+      },
+      {
+        "pageid": 98172224,
+        "ns": 6,
+        "title": "File:History of Hereford cattle (IA cu31924080041688).pdf",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 11785807,
+            "width": 785,
+            "height": 1054,
+            "pagecount": 438,
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/History_of_Hereford_cattle_%28IA_cu31924080041688%29.pdf/page1-500px-History_of_Hereford_cattle_%28IA_cu31924080041688%29.pdf.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1024,
+            "thumbheight": 1375,
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/History_of_Hereford_cattle_%28IA_cu31924080041688%29.pdf/page1-500px-History_of_Hereford_cattle_%28IA_cu31924080041688%29.pdf.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 1375
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/History_of_Hereford_cattle_%28IA_cu31924080041688%29.pdf?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:History_of_Hereford_cattle_(IA_cu31924080041688).pdf",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=98172224",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u6\">Photographer 6</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "Public domain",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "false",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "pd",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "application/pdf"
+          }
+        ]
+      },
+      {
+        "pageid": 106292681,
+        "ns": 6,
+        "title": "File:Hereford cattle (Belagro-2021).jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 2738577,
+            "width": 3718,
+            "height": 3310,
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Hereford_cattle_%28Belagro-2021%29.jpg/1280px-Hereford_cattle_%28Belagro-2021%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1024,
+            "thumbheight": 912,
+            "responsiveUrls": {
+              "2": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Hereford_cattle_%28Belagro-2021%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Hereford_cattle_%28Belagro-2021%29.jpg/1280px-Hereford_cattle_%28Belagro-2021%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 912,
+              "srcset": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Hereford_cattle_%28Belagro-2021%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Hereford_cattle_%28Belagro-2021%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Hereford_cattle_(Belagro-2021).jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=106292681",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u7\">Photographer 7</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY-SA 3.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by-sa/3.0",
+                "source": "commons-desc-page"
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-sa-3.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "image/jpeg"
+          }
+        ]
+      },
+      {
+        "pageid": 118162710,
+        "ns": 6,
+        "title": "File:Hereford i Storebrobäcken, Väsmestorps naturreservat 2022-05-17 (2402).jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 15285626,
+            "width": 3456,
+            "height": 4608,
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Hereford_i_Storebrob%C3%A4cken%2C_V%C3%A4smestorps_naturreservat_2022-05-17_%282402%29.jpg/1280px-Hereford_i_Storebrob%C3%A4cken%2C_V%C3%A4smestorps_naturreservat_2022-05-17_%282402%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1024,
+            "thumbheight": 1365,
+            "responsiveUrls": {
+              "2": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Hereford_i_Storebrob%C3%A4cken%2C_V%C3%A4smestorps_naturreservat_2022-05-17_%282402%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Hereford_i_Storebrob%C3%A4cken%2C_V%C3%A4smestorps_naturreservat_2022-05-17_%282402%29.jpg/1280px-Hereford_i_Storebrob%C3%A4cken%2C_V%C3%A4smestorps_naturreservat_2022-05-17_%282402%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 1365,
+              "srcset": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Hereford_i_Storebrob%C3%A4cken%2C_V%C3%A4smestorps_naturreservat_2022-05-17_%282402%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Hereford_i_Storebrob%C3%A4cken%2C_V%C3%A4smestorps_naturreservat_2022-05-17_%282402%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Hereford_i_Storebrob%C3%A4cken,_V%C3%A4smestorps_naturreservat_2022-05-17_(2402).jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=118162710",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u8\">Photographer 8</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY-SA 4.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by-sa/4.0",
+                "source": "commons-desc-page"
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-sa-4.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "image/jpeg"
+          }
+        ]
+      },
+      {
+        "pageid": 120841304,
+        "ns": 6,
+        "title": "File:Hereford Dunblane.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 3403295,
+            "width": 2816,
+            "height": 2112,
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Hereford_Dunblane.jpg/1280px-Hereford_Dunblane.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1024,
+            "thumbheight": 768,
+            "responsiveUrls": {
+              "2": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Hereford_Dunblane.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Hereford_Dunblane.jpg/1280px-Hereford_Dunblane.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 768,
+              "srcset": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Hereford_Dunblane.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Hereford_Dunblane.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Hereford_Dunblane.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=120841304",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u9\">Photographer 9</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "Public domain",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "false",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "pd",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "image/jpeg"
+          }
+        ]
+      },
+      {
+        "pageid": 134845845,
+        "ns": 6,
+        "title": "File:Hereford cattle promotional pin.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 453975,
+            "width": 1348,
+            "height": 1352,
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Hereford_cattle_promotional_pin.jpg/1280px-Hereford_cattle_promotional_pin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1024,
+            "thumbheight": 1027,
+            "responsiveUrls": {
+              "2": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Hereford_cattle_promotional_pin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Hereford_cattle_promotional_pin.jpg/1280px-Hereford_cattle_promotional_pin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 1027,
+              "srcset": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Hereford_cattle_promotional_pin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Hereford_cattle_promotional_pin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Hereford_cattle_promotional_pin.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=134845845",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u10\">Photographer 10</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "Public domain",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "false",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "pd",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "image/jpeg"
+          }
+        ]
+      },
+      {
+        "pageid": 147103659,
+        "ns": 6,
+        "title": "File:Angus Beef Cattle Cow Yorkshire Dales.jpg",
+        "imagerepository": "local",
+        "imageinfo": [
+          {
+            "size": 1294202,
+            "width": 4898,
+            "height": 3265,
+            "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Angus_Beef_Cattle_Cow_Yorkshire_Dales.jpg/1280px-Angus_Beef_Cattle_Cow_Yorkshire_Dales.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+            "thumbwidth": 1024,
+            "thumbheight": 683,
+            "responsiveUrls": {
+              "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Angus_Beef_Cattle_Cow_Yorkshire_Dales.jpg/3840px-Angus_Beef_Cattle_Cow_Yorkshire_Dales.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+            },
+            "thumbattribs": {
+              "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Angus_Beef_Cattle_Cow_Yorkshire_Dales.jpg/1280px-Angus_Beef_Cattle_Cow_Yorkshire_Dales.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+              "decoding": "async",
+              "loading": "lazy",
+              "width": 1024,
+              "height": 683,
+              "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Angus_Beef_Cattle_Cow_Yorkshire_Dales.jpg/3840px-Angus_Beef_Cattle_Cow_Yorkshire_Dales.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+            },
+            "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Angus_Beef_Cattle_Cow_Yorkshire_Dales.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Angus_Beef_Cattle_Cow_Yorkshire_Dales.jpg",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=147103659",
+            "extmetadata": {
+              "Artist": {
+                "value": "<a href=\"https://example.org/u11\">Photographer 11</a>",
+                "source": "commons-desc-page"
+              },
+              "LicenseShortName": {
+                "value": "CC BY-SA 3.0",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "AttributionRequired": {
+                "value": "true",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "LicenseUrl": {
+                "value": "https://creativecommons.org/licenses/by-sa/3.0",
+                "source": "commons-desc-page"
+              },
+              "Restrictions": {
+                "value": "",
+                "source": "commons-desc-page",
+                "hidden": ""
+              },
+              "License": {
+                "value": "cc-by-sa-3.0",
+                "source": "commons-templates",
+                "hidden": ""
+              }
+            },
+            "mime": "image/jpeg"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -15,11 +15,35 @@ LICENSE_LABELS = {
 }
 ALL_RIGHTS_RESERVED = "All rights reserved"
 
+# Policies (SPEC-v2 6.3). "personal" is for private study; "shareable" is for decks that
+# may be shared publicly: no NC (non-commercial) and no ND (no-derivatives) licences.
+POLICIES = {
+    "personal": frozenset(LICENSE_LABELS),
+    "shareable": frozenset({"cc0", "cc-by", "cc-by-sa"}),
+}
 
-def is_usable(photo: Photo, observer_login: str, user_login: str) -> bool:
-    if observer_login.lower() == user_login.lower():
+# Licence deeds. iNat codes carry no version; iNat applies the 4.0 licences.
+LICENSE_URLS = {
+    "cc0": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "cc-by": "https://creativecommons.org/licenses/by/4.0/",
+    "cc-by-sa": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "cc-by-nc": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "cc-by-nc-sa": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "cc-by-nd": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "cc-by-nc-nd": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+}
+
+
+def is_usable(photo: Photo, observer_login: str, user_login: str, policy: str = "personal") -> bool:
+    if policy not in POLICIES:
+        raise ValueError(f"unknown licence policy {policy!r}")
+    if user_login and observer_login.lower() == user_login.lower():
         return True
-    return (photo.license_code or "").lower() in LICENSE_LABELS
+    return (photo.license_code or "").lower() in POLICIES[policy]
+
+
+def license_url(code: str | None) -> str | None:
+    return LICENSE_URLS.get((code or "").lower())
 
 
 def license_label(code: str | None) -> str:

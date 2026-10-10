@@ -1,0 +1,239 @@
+{
+  "total_results": 598,
+  "page": 1,
+  "per_page": 10,
+  "results": [
+    {
+      "count": 43195,
+      "taxon": {
+        "id": 13094,
+        "name": "Erithacus rubecula",
+        "rank": "species",
+        "rank_level": 10,
+        "preferred_common_name": "European Robin",
+        "iconic_taxon_name": "Aves",
+        "ancestor_ids": [
+          48460,
+          1,
+          2,
+          355675,
+          3,
+          7251,
+          12704,
+          13093,
+          13094
+        ],
+        "is_active": true
+      }
+    },
+    {
+      "count": 40776,
+      "taxon": {
+        "id": 6930,
+        "name": "Anas platyrhynchos",
+        "rank": "species",
+        "rank_level": 10,
+        "preferred_common_name": "Mallard",
+        "iconic_taxon_name": "Aves",
+        "ancestor_ids": [
+          48460,
+          1,
+          2,
+          355675,
+          3,
+          6888,
+          6912,
+          6922,
+          6930
+        ],
+        "is_active": true
+      }
+    },
+    {
+      "count": 34668,
+      "taxon": {
+        "id": 3048,
+        "name": "Columba palumbus",
+        "rank": "species",
+        "rank_level": 10,
+        "preferred_common_name": "Common Wood-Pigeon",
+        "iconic_taxon_name": "Aves",
+        "ancestor_ids": [
+          48460,
+          1,
+          2,
+          355675,
+          3,
+          2708,
+          2715,
+          3000,
+          3048
+        ],
+        "is_active": true
+      }
+    },
+    {
+      "count": 31633,
+      "taxon": {
+        "id": 12716,
+        "name": "Turdus merula",
+        "rank": "species",
+        "rank_level": 10,
+        "preferred_common_name": "Eurasian Blackbird",
+        "iconic_taxon_name": "Aves",
+        "ancestor_ids": [
+          48460,
+          1,
+          2,
+          355675,
+          3,
+          7251,
+          15977,
+          12705,
+          12716
+        ],
+        "is_active": true
+      }
+    },
+    {
+      "count": 29241,
+      "taxon": {
+        "id": 6921,
+        "name": "Cygnus olor",
+        "rank": "species",
+        "rank_level": 10,
+        "preferred_common_name": "Mute Swan",
+        "iconic_taxon_name": "Aves",
+        "ancestor_ids": [
+          48460,
+          1,
+          2,
+          355675,
+          3,
+          6888,
+          6912,
+          6913,
+          6921
+        ],
+        "is_active": true
+      }
+    },
+    {
+      "count": 28024,
+      "taxon": {
+        "id": 4954,
+        "name": "Ardea cinerea",
+        "rank": "species",
+        "rank_level": 10,
+        "preferred_common_name": "Grey Heron",
+        "iconic_taxon_name": "Aves",
+        "ancestor_ids": [
+          48460,
+          1,
+          2,
+          355675,
+          3,
+          67566,
+          4929,
+          597395,
+          4950,
+          4954
+        ],
+        "is_active": true
+      }
+    },
+    {
+      "count": 25962,
+      "taxon": {
+        "id": 144510,
+        "name": "Chroicocephalus ridibundus",
+        "rank": "species",
+        "rank_level": 10,
+        "preferred_common_name": "Black-headed Gull",
+        "iconic_taxon_name": "Aves",
+        "ancestor_ids": [
+          48460,
+          1,
+          2,
+          355675,
+          3,
+          67561,
+          4342,
+          447155,
+          144320,
+          144510
+        ],
+        "is_active": true
+      }
+    },
+    {
+      "count": 25748,
+      "taxon": {
+        "id": 204496,
+        "name": "Corvus corone",
+        "rank": "species",
+        "rank_level": 10,
+        "preferred_common_name": "Carrion Crow",
+        "iconic_taxon_name": "Aves",
+        "ancestor_ids": [
+          48460,
+          1,
+          2,
+          355675,
+          3,
+          7251,
+          7823,
+          7998,
+          204496
+        ],
+        "is_active": true
+      }
+    },
+    {
+      "count": 25088,
+      "taxon": {
+        "id": 891696,
+        "name": "Pica pica",
+        "rank": "species",
+        "rank_level": 10,
+        "preferred_common_name": "Eurasian Magpie",
+        "iconic_taxon_name": "Aves",
+        "ancestor_ids": [
+          48460,
+          1,
+          2,
+          355675,
+          3,
+          7251,
+          7823,
+          8318,
+          891696
+        ],
+        "is_active": true
+      }
+    },
+    {
+      "count": 24547,
+      "taxon": {
+        "id": 201282,
+        "name": "Gallinula chloropus",
+        "rank": "species",
+        "rank_level": 10,
+        "preferred_common_name": "Common Moorhen",
+        "iconic_taxon_name": "Aves",
+        "ancestor_ids": [
+          48460,
+          1,
+          2,
+          355675,
+          3,
+          4,
+          154,
+          979864,
+          201282
+        ],
+        "is_active": true
+      }
+    }
+  ]
+}

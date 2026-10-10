@@ -1,6 +1,6 @@
 """API JSON -> model dataclasses. Pure: no I/O."""
 
-from inat_anki.model import Observation, Photo, Taxon, TaxonAncestry
+from inat_anki.model import Observation, Photo, RankedTaxon, Taxon, TaxonAncestry
 
 PHOTO_SIZES = ("large", "medium")
 
@@ -21,6 +21,7 @@ def taxon_from_api(d: dict) -> Taxon:
         rank=d["rank"],
         common_name=d.get("preferred_common_name") or None,
         iconic_taxon_name=d.get("iconic_taxon_name"),
+        ancestor_ids=tuple(d.get("ancestor_ids") or ()),
     )
 
 
@@ -74,3 +75,8 @@ def photo_ext(photo: Photo) -> str:
 
 def media_filename(photo: Photo) -> str:
     return f"inat_{photo.id}.{photo_ext(photo)}"
+
+
+def ranked_from_api(d: dict) -> RankedTaxon:
+    """One result of GET /v1/observations/species_counts."""
+    return RankedTaxon(taxon=taxon_from_api(d["taxon"]), count=d["count"])
