@@ -11,6 +11,8 @@ from inat_anki.throttle import RateLimiter
 API_BASE = "https://api.inaturalist.org/v1"
 PER_PAGE = 200  # the API maximum
 TAXA_BATCH = 30  # ids per GET /v1/taxa/{ids}
+OBS_BATCH = 200  # ids per GET /v1/observations?id=
+MAX_SPECIES = 500  # largest species_counts page
 RETRY_DELAYS = (2, 4, 8, 16, 32)  # seconds, then fail
 TIMEOUT = 30
 
@@ -46,11 +48,12 @@ class INatClient:
         login: str,
         session: requests.Session | None = None,
         on_retry=None,
+        agent: str | None = None,
     ):
         self.limiter = limiter
         self.clock = limiter.clock
         self.session = session or requests.Session()
-        self.session.headers["User-Agent"] = user_agent(login)
+        self.session.headers["User-Agent"] = agent or user_agent(login)
         self.on_retry = on_retry or (lambda delay, reason: None)
 
     def _request(self, url: str, params: dict | None = None, expected_bytes: int = 0):
@@ -81,7 +84,10 @@ class INatClient:
         return response
 
     def get_json(self, path: str, params: dict | None = None) -> dict:
-        return self._request(f"{API_BASE}{path}", params).json()
+        return self.get_json_url(f"{API_BASE}{path}", params)
+
+    def get_json_url(self, url: str, params: dict | None = None) -> dict:
+        return self._request(url, params).json()
 
     def iter_observations(self, params: dict) -> Iterator[dict]:
         """Every observation matching `params`, paging by id_above (works past 10k)."""
@@ -112,6 +118,28 @@ class INatClient:
                 f"/taxa/{batch}", {"locale": locale, "preferred_place_id": place_id}
             )
             out.extend(page["results"])
+        return out
+
+    def species_counts(self, params: dict, per_page: int) -> list[dict]:
+        """One page of GET /v1/observations/species_counts (species ranked by count)."""
+        page = self.get_json(
+            "/observations/species_counts", {**params, "per_page": min(per_page, MAX_SPECIES)}
+        )
+        return page["results"]
+
+    def search_observations(self, params: dict, per_page: int = 30) -> list[dict]:
+        return self.get_json("/observations", {**params, "per_page": per_page})["results"]
+
+    def observations_by_id(self, ids: list[int]) -> list[dict]:
+        """Observations by ID, OBS_BATCH per request (for licence re-checks)."""
+        out = []
+        for start in range(0, len(ids), OBS_BATCH):
+            batch = ids[start : start + OBS_BATCH]
+            out.extend(
+                self.search_observations(
+                    {"id": ",".join(str(i) for i in batch)}, per_page=len(batch)
+                )
+            )
         return out
 
     def download(self, url: str, expected_bytes: int) -> bytes:

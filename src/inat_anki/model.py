@@ -194,6 +194,7 @@ class Breed:
     commons_category: str
     wikipedia: str
     photos: tuple[str, ...] = ()  # pinned Commons file titles
+    search: str = ""  # Commons search phrase; default "<name> <kind>"
 
 
 @dataclass(frozen=True)
@@ -221,6 +222,7 @@ class ChosenPhoto:
     url: str
     credit_html: str
     source_id: str  # iNat observation ID, or the Commons file title
+    license: str = ""  # iNat licence code or Commons licence value, for reports
 
 
 @dataclass(frozen=True)

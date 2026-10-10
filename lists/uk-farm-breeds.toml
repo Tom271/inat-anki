@@ -19,7 +19,8 @@
 #     then Oxford Sandy and Black).
 # Highland (cattle #10) and Berkshire (pigs #5) were confirmed on 2026-10-10.
 #
-# Never change a `key`: note GUIDs are built from it. `photos` pins reviewed Commons file
+# Never change a `key`: note GUIDs are built from it. `search` (optional) is the Commons
+# search phrase when "<name> <kind>" won't do. `photos` pins reviewed Commons file
 # titles; it is filled once by the photo-review step (SPEC-v2 section 6.2) and starts empty.
 
 [[breed]]
@@ -155,6 +156,7 @@ species = "Ovis aries"
 taxon_id = 121578
 commons_category = "Mule sheep"   # only 2 files: Commons search adds candidates
 wikipedia = "Mule (sheep)"
+search = "Mule sheep"
 photos = []
 
 [[breed]]

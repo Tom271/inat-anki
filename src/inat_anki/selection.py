@@ -29,6 +29,7 @@ def to_chosen(photo: Photo, obs: Observation, size: str) -> ChosenPhoto:
         url=photo_url(photo, size),
         credit_html=inat_credit(photo, obs),
         source_id=str(obs.id),
+        license=photo.license_code or "",
     )
 
 
