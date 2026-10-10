@@ -1,7 +1,7 @@
 # UK farm breeds for the v2 "Farm breeds" set: 10 cattle, 10 sheep, 5 outdoor pigs.
 #
 # Breeds are not taxa on iNaturalist, and farm animals are recorded as captive (casual
-# grade), so photos come from Wikimedia Commons instead (SPEC-v2 section 6.2). Each
+# grade), so photos come from Wikimedia Commons only (SPEC-v2 section 6.2). Each
 # breed's Commons category and Wikipedia article were checked on 2026-10-10
 # (scripts/verify_v2_breeds*.py).
 #
@@ -17,7 +17,7 @@
 #   Pigs: native breeds commonly kept outdoors, ranked by pedigree popularity as reported
 #     by the British Pig Association (Gloucestershire Old Spots, then British Saddleback,
 #     then Oxford Sandy and Black).
-# Highland (cattle #10) and Berkshire (pigs #5) are judgement calls; see SPEC-v2 section 12.
+# Highland (cattle #10) and Berkshire (pigs #5) were confirmed on 2026-10-10.
 #
 # Never change a `key`: note GUIDs are built from it. `photos` pins reviewed Commons file
 # titles; it is filled once by the photo-review step (SPEC-v2 section 6.2) and starts empty.
@@ -90,7 +90,7 @@ key = "cattle/beef-shorthorn"
 name = "Beef Shorthorn"
 species = "Bos taurus"
 taxon_id = 74113
-commons_category = "Beef Shorthorn"   # only 4 files: Geograph fallback likely
+commons_category = "Beef Shorthorn"   # only 4 files: Commons search adds candidates
 wikipedia = "Beef Shorthorn"
 photos = []
 
@@ -144,7 +144,7 @@ key = "sheep/lleyn"
 name = "Lleyn"
 species = "Ovis aries"
 taxon_id = 121578
-commons_category = "Lleyn sheep"   # only 2 files: Geograph fallback needed
+commons_category = "Lleyn sheep"   # only 2 files: Commons search adds candidates
 wikipedia = "Lleyn sheep"
 photos = []
 
@@ -153,7 +153,7 @@ key = "sheep/mule"
 name = "Mule (North of England, Welsh and Scotch)"
 species = "Ovis aries"
 taxon_id = 121578
-commons_category = "Mule sheep"   # only 2 files: Geograph fallback needed
+commons_category = "Mule sheep"   # only 2 files: Commons search adds candidates
 wikipedia = "Mule (sheep)"
 photos = []
 

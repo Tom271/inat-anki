@@ -14,7 +14,7 @@ unseen species separately.
 
 There's also a **Farm breeds** subdeck: the commonest UK cattle and sheep breeds, and pig
 breeds kept outdoors. Breeds aren't taxa on iNaturalist, so their photos come from
-Wikimedia Commons, under the same licence rules (section 6.2).
+Wikimedia Commons only, under the same licence rules (section 6.2).
 
 Every photo must be licensed so that the deck can be **shared publicly**, for example on
 AnkiWeb, with attribution on each card.
@@ -31,7 +31,7 @@ AnkiWeb, with attribution on each card.
 | Trees | The Woodland Trust's A–Z of British trees, **including commonly planted non-natives**. |
 | Ferns | Part of "Plants". |
 | Mammals | Wild species only. Domestic species are excluded; feral populations are included. Livestock is covered by Farm breeds instead. |
-| Farm breeds | 10 cattle, 10 sheep and 5 outdoor pig breeds, one card per breed, with photos from Wikimedia Commons (Geograph as a fallback). |
+| Farm breeds | 10 cattle, 10 sheep and 5 outdoor pig breeds, one card per breed, with photos from **Wikimedia Commons only**. Highland is cattle #10 and Berkshire is pigs #5. |
 | Species already observed | **Tagged `inat::seen`.** This is in scope, not optional (section 5.2). |
 | Sets | The 8 originally listed, plus Farm breeds (25), plus Insects (50: butterflies and all other insects, as one set), Grasses (20: true grasses only), Liverworts (10) and Seashore (20). |
 
@@ -116,8 +116,15 @@ These came from `scripts/verify_v2.py` and `scripts/verify_v2_sets.py`, with raw
   (sheep)"). Most categories have 10 to 45 photos in the first 50 files that are freely
   licensed, JPEG, and at least 1,024 px. The licences are mainly CC BY-SA 2.0 to 4.0, CC BY,
   CC0 and PD.
-- **Thin categories:** Lleyn (2 files), Mule (2) and Beef Shorthorn (4). These need the
-  Geograph fallback (section 6.2).
+- **Thin categories:** Lleyn (2 files), Mule (2) and Beef Shorthorn (4). A Commons search
+  in the File namespace finds more photos that aren't in the category, so every breed
+  has at least 2 candidates that are freely licensed, JPEG and at least 1,024 px:
+  - Lleyn: 3 candidates;
+  - Mule: 2 candidates in the category, but the search also returned a Texel;
+  - Beef Shorthorn: 5 candidates.
+
+  Many of these are Geograph photos already copied to Commons. Search results include
+  other breeds, so the human review in section 6.2 is required.
 - **Commons licence values** come from `extmetadata.License`, for example
   `cc-by-sa-4.0`, `cc-by-2.0`, `cc-by-sa-3.0-de`, `cc0` or `pd`. Some files have an empty
   value, and these are rejected.
@@ -285,7 +292,7 @@ describe a single observation and don't fit a species card.
 | `Order` | As above. |
 | `UKObservations` | The UK count when the card was built, for example "43,195 UK observations". Empty for breeds, and the template hides it. |
 | `InfoURL` | `https://www.inaturalist.org/taxa/<id>` for species; the Wikipedia article for breeds. |
-| `PhotoCredits` | One line per photo: attribution, licence **linked to its licence deed**, and a link to the source (the iNat observation, or the Commons or Geograph photo page). |
+| `PhotoCredits` | One line per photo: attribution, licence **linked to its licence deed**, and a link to the source (the iNat observation, or the Commons file page). |
 | `Source` | `place:6857:<set key>`, or `breed:<breed key>` |
 
 Fix this field list now, as in v1 section 7.2.
@@ -358,9 +365,9 @@ GET /v1/observations?taxon_id=<id>&place_id=6857&quality_grade=research
 5. **Licences are re-checked every run,** with one batched request per 200 chosen
    observations (`/v1/observations?id=…`), because users can change licences.
 
-### 6.2 Breed photos: Wikimedia Commons, with Geograph as a fallback
+### 6.2 Breed photos: Wikimedia Commons only
 
-Two photos per breed, from the breed's Commons category, through the MediaWiki API
+Two photos per breed, from Wikimedia Commons, through the MediaWiki API
 (`action=query&generator=categorymembers&prop=imageinfo&iiprop=url|mime|size|extmetadata`).
 
 1. **Licence check.** The shareable policy, mapped to Commons values from
@@ -373,8 +380,11 @@ Two photos per breed, from the breed's Commons category, through the MediaWiki A
    Everything else is rejected, including empty values, GFDL-only files, `cc-sa-*` and
    the Free Art Licence. A file is also rejected if its `extmetadata.Restrictions` is set,
    for example for personality rights or trademarks.
-2. **Candidates** must be JPEG and at least 1,024 px on the long side. They're downloaded
-   as Wikimedia thumbnails (`iiurlwidth=1024`).
+2. **Candidates** come from the breed's category, plus a File-namespace search for the
+   breed name (`generator=search&gsrnamespace=6&gsrsearch="<breed> sheep"`, and the same
+   for cattle and pigs). The search finds photos that aren't in the category. Candidates
+   must be JPEG and at least 1,024 px on the long side. They're downloaded as Wikimedia
+   thumbnails (`iiurlwidth=1024`).
 3. **Pinned photos.** Breed categories mix photos with old engravings, show ribbons and
    herds seen from far away, so the photos are **chosen once by a person and pinned** in
    `photos` in the breeds list. `inat-anki species --suggest-breed-photos` writes a local
@@ -384,17 +394,11 @@ Two photos per breed, from the breed's Commons category, through the MediaWiki A
 4. **Re-checks.** Each run re-checks the pinned files' licences and that they still exist.
    That's one batched `prop=imageinfo` request per 50 titles. A file that fails is
    dropped, and the breed is listed for review.
-5. **Fallback:** Geograph Britain and Ireland. All Geograph images are CC BY-SA 2.0 and
-   from the UK. It's for breeds whose Commons categories are too thin: Lleyn, Mule and
-   Beef Shorthorn. The Geograph API needs a free key, set in config. This is unverified,
-   and must be checked before building. Geograph credits name the photographer and link
-   the photo page.
-6. **Attribution:**
-   - **Commons:** the `Artist` value as text (HTML tags stripped), or the `Attribution`
-     value when there is one; then `LicenseShortName` linked to `LicenseUrl`; then a link
-     to the file's description page.
-   - **Geograph:** "© photographer", then CC BY-SA 2.0 linked to its deed, then a link to
-     the photo page.
+5. **No other photo sources.** If a breed has fewer than 2 usable photos, its card uses
+   the one it has. If it has none, the breed is skipped and reported.
+6. **Attribution:** the `Artist` value as text (HTML tags stripped), or the `Attribution`
+   value when there is one; then `LicenseShortName` linked to `LicenseUrl`; then a link
+   to the file's description page.
 7. **Etiquette:** a `User-Agent` with the project URL, as Wikimedia's policy requires.
    Requests are made one at a time, through the same 1 request/s throttle as iNat. Commons
    API requests also send `maxlag=5`.
@@ -420,7 +424,7 @@ opened. It states:
 
 - that the photos are by iNaturalist users, under CC0, CC BY or CC BY-SA, as credited
   on each card; and that breed photos come from Wikimedia Commons (CC0, public domain, CC
-  BY or CC BY-SA) or Geograph (CC BY-SA 2.0);
+  BY or CC BY-SA) 
 - that CC BY-SA photos remain under CC BY-SA;
 - that the data comes from iNaturalist.
 
@@ -465,9 +469,9 @@ The run report is v1's, plus:
 | Photo search, one per species | about 400, plus fallbacks | new or replaced species only |
 | Licence re-check, 200 observations per request | 0 | about 4 |
 | Photo downloads (400 × 2) | about 800 | new or replaced photos only |
-| Commons: breed categories (25) and licence re-checks (1 per 50 files) | about 26 | 1 |
+| Commons: breed categories (25), file searches (25) and licence re-checks (1 per 50 files) | about 51 | 1 |
 | Breed photo downloads (25 × 2) | 50 | new or replaced photos only |
-| **Total** | **about 1,310 requests, about 22 min** | **about 21 requests** |
+| **Total** | **about 1,335 requests, about 22 min** | **about 21 requests** |
 
 CC photos on the S3 host were about 212 KB at `large` in the v1 sample, so the first run
 is about 170 to 530 MB. That's far under the 4.5 GB per hour limit. The first run goes
@@ -488,7 +492,7 @@ The v1 split between modules with no I/O and thin I/O modules is unchanged:
 - **`breeds.py`** (no I/O): parse and validate the breeds list, map Commons licence
   values to the policy, choose pinned or candidate photos, and build breed attribution.
 - **`commons.py`** (I/O): the MediaWiki API client for category members, image info and
-  thumbnails, through the shared throttle. `geograph.py` is the same for Geograph.
+  thumbnails, through the shared throttle.
 - **`deck.py`:** gains the species model, derived deck IDs, the deck description and
   multi-deck packages. genanki's `Package` accepts a list of decks.
 - **`cli.py`:** adds the `species` subcommand, and shares the throttle, client, media
@@ -535,7 +539,8 @@ Required cases:
   - pinned photos are used before candidates;
   - a pinned file that has been deleted, or whose licence changed, is dropped and
     reported;
-  - the Geograph fallback;
+  - search candidates are merged with category files, without duplicates;
+  - a breed with one usable photo gets a one-photo card, and a breed with none is skipped;
   - breed GUIDs are stable;
   - no `inat::seen` on breed cards.
 - **Package:** the `.apkg` has 13 decks with the right names; notes have the right
@@ -562,14 +567,9 @@ Acceptance, done manually:
 
 ## 12. Open questions
 
-1. **Cattle #10:** Highland is used: it's very visible in the uplands and in
-   conservation grazing, and has good photos. Welsh Black or South Devon may be more
-   numerous. Swap?
-2. **Pigs #5:** Berkshire is used. Large Black is the classic outdoor breed, but it has
-   fewer usable photos (4). Swap?
-3. **Geograph:** is it acceptable to register for a free Geograph API key, for the Lleyn,
-   Mule and Beef Shorthorn photos? If not, those three breeds use the best Commons photos
-   available, even if they're few.
+None. Settled on 2026-10-10:
 
-Settled on 2026-10-10: 50 insects and 20 grasses, and Grasses means true grasses
-(Poaceae) only, with sedges (Cyperaceae) and rushes (Juncaceae) staying in Plants.
+- 50 insects and 20 grasses. Grasses means true grasses (Poaceae) only, with sedges
+  (Cyperaceae) and rushes (Juncaceae) staying in Plants.
+- Farm breed photos come from Wikimedia Commons only.
+- Highland stays as cattle #10, and Berkshire as pigs #5.

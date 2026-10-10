@@ -203,6 +203,11 @@ From `scripts/verify_v2_breeds.py`, `verify_v2_breeds_2.py` and `verify_v2_breed
     `cc-by-sa-3.0-de`, `cc0`, `pd` and `cc-sa-1.0`, or an empty string.
   - `extmetadata` can be an empty **list** rather than an object for some files, so
     handle that case.
-- **Thin categories:** Lleyn sheep (2 files), Mule sheep (2) and Beef Shorthorn (4).
+- **Thin categories:** Lleyn sheep (2 files), Mule sheep (2) and Beef Shorthorn (4). A
+  File-namespace search (`generator=search&gsrnamespace=6`) for the breed name adds
+  photos that aren't in the category. That gives shareable JPEGs of at least 1,024 px:
+  Lleyn 3, Mule 2 and Beef Shorthorn 5. Many are Geograph photos copied to Commons. The
+  results include other breeds (searching "mule sheep" also returned a Texel photo), so
+  candidates need a human review (`scripts/verify_v2_breeds_4.py`).
 - **Wikipedia:** all 25 articles exist. British Blue is covered by "Belgian Blue", and
   the Mule by "Mule (sheep)".
