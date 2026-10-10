@@ -1,0 +1,98 @@
+# Common UK species decks (SPEC-v2 section 4). Build with: inat-anki species
+#
+# Never rename a set `key`: deck IDs and state are derived from it. Taxon IDs were checked
+# against iNaturalist on 2026-10-10 (docs/api-notes.md section 8).
+
+place_id = 6857                      # United Kingdom
+deck = "iNaturalist::UK common species"
+photos_per_species = 2
+seen_by = "tom1591"                  # tags species this user has observed; set "" for a deck to share
+
+[[set]]
+key = "birds"
+name = "Birds"
+taxon_id = [3]
+count = 50
+
+[[set]]
+key = "mammals"
+name = "Mammals"
+taxon_id = [40151]
+# Domestic species; livestock is covered by Farm breeds. Feral animals stay in.
+without_taxon_id = [43584, 47144, 118552, 74113, 121578, 324492]
+count = 10
+
+[[set]]
+key = "farm-breeds"
+name = "Farm breeds"
+breed_list = "lists/uk-farm-breeds.toml"
+
+[[set]]
+key = "herps"
+name = "Reptiles and amphibians"
+taxon_id = [26036, 20978]
+count = 20
+
+[[set]]
+key = "insects"
+name = "Insects"
+taxon_id = [47158]
+count = 50
+
+[[set]]
+key = "seashore"
+name = "Seashore"
+# Brown, red and green seaweeds; echinoderms; cnidarians; barnacles; true crabs; chitons;
+# periwinkles, limpets, mussels, cockles, topshells, dogwhelks.
+taxon_id = [48220, 57774, 51429, 47549, 47534, 210289, 121639, 47429,
+            48918, 51740, 50600, 50597, 53830, 50766]
+count = 20
+
+[[set]]
+key = "trees"
+name = "Trees"
+species_list = "lists/uk-trees.txt"
+quality_grade = "research,casual"    # count planted (cultivated) trees too
+count = 50
+
+[[set]]
+key = "plants"
+name = "Plants"
+taxon_id = [47126]
+# Mosses, liverworts, hornworts, red algae, green algae, grasses (their own sets or not
+# plants for this deck). Ferns stay in.
+without_taxon_id = [311249, 64615, 56327, 57774, 50863, 47434]
+exclude_sets = ["trees"]
+count = 100
+
+[[set]]
+key = "grasses"
+name = "Grasses"
+taxon_id = [47434]
+count = 20
+
+[[set]]
+key = "mosses"
+name = "Mosses"
+taxon_id = [311249]
+count = 10
+
+[[set]]
+key = "liverworts"
+name = "Liverworts"
+taxon_id = [64615]
+count = 10
+
+[[set]]
+key = "fungi"
+name = "Fungi"
+taxon_id = [47170]
+without_taxon_id = [54743]
+exclude_sets = ["lichens"]
+count = 50
+
+[[set]]
+key = "lichens"
+name = "Lichens"
+taxon_id = [54743]
+count = 10

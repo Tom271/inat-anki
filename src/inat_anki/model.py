@@ -39,6 +39,7 @@ class Taxon:
     rank: str
     common_name: str | None
     iconic_taxon_name: str | None
+    ancestor_ids: tuple[int, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -121,3 +122,137 @@ class Plan:
     unreferenced_photos: list[int] = field(default_factory=list)
     estimated_bytes: int = 0
     estimated_seconds: float = 0.0
+
+
+# ---------------------------------------------------------------- v2: common-species decks
+
+# Fields of the "iNaturalist species" note type, in order. Never reorder, rename or remove
+# them (SPEC-v2 5.1).
+SPECIES_FIELD_NAMES = (
+    "TaxonID",
+    "FrontPhoto",
+    "ExtraPhotos",
+    "CommonName",
+    "ScientificName",
+    "Rank",
+    "Group",
+    "Family",
+    "Order",
+    "UKObservations",
+    "InfoURL",
+    "PhotoCredits",
+    "Source",
+)
+GUID_NAMESPACE_PLACE = "inat-place"
+GUID_NAMESPACE_BREED = "breed"
+
+
+@dataclass(frozen=True)
+class SetSpec:
+    """One subdeck of the species deck (SPEC-v2 4)."""
+
+    key: str
+    name: str
+    count: int | None = None  # None for breed lists, whose order is fixed
+    taxon_ids: tuple[int, ...] = ()
+    without_taxon_ids: tuple[int, ...] = ()
+    exclude_sets: tuple[str, ...] = ()
+    quality_grade: str = "research"
+    rank: str = "species"
+    species_list: str | None = None
+    breed_list: str | None = None
+
+
+@dataclass(frozen=True)
+class SetsConfig:
+    place_id: int
+    deck: str
+    photos_per_species: int
+    seen_by: str
+    sets: tuple[SetSpec, ...]
+
+
+@dataclass(frozen=True)
+class ListedSpecies:
+    taxon_id: int
+    name: str
+    listed_as: str
+
+
+@dataclass(frozen=True)
+class RankedTaxon:
+    taxon: Taxon
+    count: int
+
+
+@dataclass(frozen=True)
+class Breed:
+    key: str
+    name: str
+    species: str
+    taxon_id: int
+    commons_category: str
+    wikipedia: str
+    photos: tuple[str, ...] = ()  # pinned Commons file titles
+
+
+@dataclass(frozen=True)
+class CommonsFile:
+    title: str  # "File:..."
+    thumb_url: str
+    width: int
+    height: int
+    mime: str
+    license: str  # extmetadata License, e.g. "cc-by-sa-4.0"; "" if missing
+    license_short: str
+    license_url: str
+    artist: str  # plain text
+    attribution: str  # plain text; "" if none
+    restrictions: str
+    page_url: str
+
+
+@dataclass(frozen=True)
+class ChosenPhoto:
+    """A photo chosen for a species or breed card, with its credit line."""
+
+    key: str  # "inat:<photo id>" or "commons:<file title>"
+    filename: str
+    url: str
+    credit_html: str
+    source_id: str  # iNat observation ID, or the Commons file title
+
+
+@dataclass(frozen=True)
+class Card:
+    """Everything needed to render one species or breed note."""
+
+    guid_parts: tuple
+    set_key: str
+    set_name: str
+    sort_id: int
+    common_name: str
+    scientific_name: str
+    rank: str
+    family: str | None
+    order: str | None
+    iconic: str | None
+    uk_count: int | None
+    info_url: str
+    source: str
+    photos: tuple[ChosenPhoto, ...]
+    seen: bool = False
+    breed_kind: str | None = None  # "cattle", "sheep" or "pig" for breed cards
+
+
+@dataclass(frozen=True)
+class CardNote:
+    guid_parts: tuple
+    set_key: str
+    fields: tuple[str, ...]
+    tags: tuple[str, ...]
+    front_media: str
+    media: tuple[str, ...]
+
+    def field(self, name: str) -> str:
+        return self.fields[SPECIES_FIELD_NAMES.index(name)]
