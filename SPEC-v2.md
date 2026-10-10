@@ -147,7 +147,9 @@ These came from `scripts/verify_v2.py` and `scripts/verify_v2_sets.py`, with raw
 ## 4. Sets
 
 A **set** is one subdeck. The set definitions are data, not code, and are shipped as
-`sets/uk-common.toml`:
+`src/inat_anki/data/uk-common.toml`, with the lists under `src/inat_anki/data/lists/`.
+They live inside the package so that `uv tool install` ships them. Paths in a sets file are
+relative to the file:
 
 | Set | Count | Definition |
 |---|---|---|

@@ -100,3 +100,27 @@ checked on 2026-10-10 (see [api-notes.md](api-notes.md#cors-web-app-risk-from-sp
 A user's own photos are often "all rights reserved", so the web app can't download them
 into an `.apkg`. The fallback is hotlinked `<img src>` URLs, which need no CORS but mean
 the cards need a network connection. The other option is a proxy.
+
+## v2: species and breed cards
+
+These are used by `inat-anki species` (SPEC-v2 section 5), and are pinned by
+`tests/test_deck_species.py`.
+
+| What | Value |
+|---|---|
+| Model (note type) ID | `1713941905` |
+| Model name | `iNaturalist species` |
+| Sort field | `TaxonID` (index 0) |
+| Species note GUID | `guid_for("inat-place", "<place_id>", taxon_id)`, for example `("inat-place", "6857", 13094)` |
+| Breed note GUID | `guid_for("breed", "<breed key>")`, for example `("breed", "sheep/lleyn")` |
+| Deck name | `<deck>::<set name>`, for example `iNaturalist::UK common species::Birds` |
+| Deck ID | `(1 << 30) + int.from_bytes(sha256("inat-anki-deck:" + set_key)[:8], "big") % (1 << 30)`. Check value: `birds` gives `2113160693`. |
+| Commons media filename | `commons_<first 16 hex digits of sha256(file title)>.jpg` |
+
+The species fields, in order: `TaxonID`, `FrontPhoto`, `ExtraPhotos`, `CommonName`,
+`ScientificName`, `Rank`, `Group`, `Family`, `Order`, `UKObservations`, `InfoURL`,
+`PhotoCredits`, `Source`.
+
+The templates are in `src/inat_anki/templates/species/`. Their CSS is v1's `style.css`
+plus `species/style.css`. The "Seen by you" badge is CSS keyed on the `inat::seen` tag,
+which `{{Tags}}` puts in the card's class list.

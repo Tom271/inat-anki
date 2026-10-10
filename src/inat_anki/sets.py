@@ -174,18 +174,19 @@ def plan_membership(
     once in, a taxon stays even if it falls below the top `count`, unless `rerank`.
     """
     accepted = set(accepted)
-    top = [c.taxon.id for c in candidates if c.taxon.id in accepted][:count]
+    with_photos = [c.taxon.id for c in candidates if c.taxon.id in accepted]
     m = Membership()
     if rerank:
-        m.members = top
-        m.removed = [i for i in previous if i not in top]
+        m.members = with_photos[:count]
+        m.removed = [i for i in previous if i not in m.members]
     else:
         m.members = list(previous)
-        for tid in top:
-            if len(m.members) >= max(count, len(previous)):
+        for tid in with_photos:
+            if len(m.members) >= count:
                 break
             if tid not in m.members:
                 m.members.append(tid)
+        top = {c.taxon.id for c in candidates[:count]}
         m.below_cutoff = [i for i in previous if i not in top]
     m.added = [i for i in m.members if i not in previous]
     return m

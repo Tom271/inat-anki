@@ -14,6 +14,7 @@ from inat_anki.render_species import render_card
 from inat_anki.sets import parse_sets
 
 ROOT = Path(__file__).parent.parent
+DATA = ROOT / "src/inat_anki/data"
 JPEG = b"\xff\xd8\xff\xe0" + b"x" * 100
 
 
@@ -67,7 +68,7 @@ def test_deck_ids_derived_and_pinned():
     assert deck.deck_id_for("birds") != deck.deck_id_for("mammals")
     # Pinned so the web app can be checked against it.
     assert deck.deck_id_for("birds") == 2113160693
-    config = parse_sets(tomllib.loads((ROOT / "sets/uk-common.toml").read_text()))
+    config = parse_sets(tomllib.loads((DATA / "uk-common.toml").read_text()))
     ids = [deck.deck_id_for(s.key) for s in config.sets]
     assert len(set(ids)) == len(ids)
     assert all((1 << 30) <= i < (1 << 31) for i in ids)

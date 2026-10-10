@@ -9,3 +9,4 @@ inat-cache/
 *.apkg
 inat-anki.toml
 scripts/out/
+inat-cache-species/
