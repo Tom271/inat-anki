@@ -12,6 +12,10 @@ observation. The front shows photos taken by iNaturalist users; the back shows t
 identification. Species the user has already observed are tagged, so they can study
 unseen species separately.
 
+There's also a **Farm breeds** subdeck: the commonest UK cattle and sheep breeds, and pig
+breeds kept outdoors. Breeds aren't taxa on iNaturalist, so their photos come from
+Wikimedia Commons, under the same licence rules (section 6.2).
+
 Every photo must be licensed so that the deck can be **shared publicly**, for example on
 AnkiWeb, with attribution on each card.
 
@@ -26,9 +30,10 @@ AnkiWeb, with attribution on each card.
 | Ranking | UK research-grade observation count from iNat. Trees also count casual-grade observations, so that commonly planted non-natives are included (section 4.2). |
 | Trees | The Woodland Trust's A–Z of British trees, **including commonly planted non-natives**. |
 | Ferns | Part of "Plants". |
-| Mammals | Exclude domestic species. Feral populations are included. |
+| Mammals | Wild species only. Domestic species are excluded; feral populations are included. Livestock is covered by Farm breeds instead. |
+| Farm breeds | 10 cattle, 10 sheep and 5 outdoor pig breeds, one card per breed, with photos from Wikimedia Commons (Geograph as a fallback). |
 | Species already observed | **Tagged `inat::seen`.** This is in scope, not optional (section 5.2). |
-| Sets | The 8 originally listed, plus Insects (50: butterflies and all other insects, as one set), Grasses (20: true grasses only), Liverworts (10) and Seashore (20). |
+| Sets | The 8 originally listed, plus Farm breeds (25), plus Insects (50: butterflies and all other insects, as one set), Grasses (20: true grasses only), Liverworts (10) and Seashore (20). |
 
 ## 3. Facts checked against the live API (2026-10-10)
 
@@ -100,7 +105,26 @@ These came from `scripts/verify_v2.py` and `scripts/verify_v2_sets.py`, with raw
 - **Votes don't help.** `order_by=votes` makes little difference: most observations have 0
   or 1 votes.
 
-### 3.3 Previews: the current top species in each set
+### 3.3 Farm breeds (checked against iNat, Wikimedia Commons and Wikipedia)
+
+- **iNat can't supply breeds.** Breeds aren't taxa: cattle are all *Bos taurus*. The only
+  "Breed" observation field (ID 3905) has 371 values worldwide, of which 2 are on UK
+  cattle and 1 on UK sheep. Farm animals are recorded as captive, so they're casual
+  grade.
+- **Wikimedia Commons has a category for every one of the 25 breeds**, and a Wikipedia
+  article for each (British Blue is under "Belgian Blue", and the Mule under "Mule
+  (sheep)"). Most categories have 10 to 45 photos in the first 50 files that are freely
+  licensed, JPEG, and at least 1,024 px. The licences are mainly CC BY-SA 2.0 to 4.0, CC BY,
+  CC0 and PD.
+- **Thin categories:** Lleyn (2 files), Mule (2) and Beef Shorthorn (4). These need the
+  Geograph fallback (section 6.2).
+- **Commons licence values** come from `extmetadata.License`, for example
+  `cc-by-sa-4.0`, `cc-by-2.0`, `cc-by-sa-3.0-de`, `cc0` or `pd`. Some files have an empty
+  value, and these are rejected.
+- **Old illustrations:** many PD files in the pig categories (Berkshire especially) are
+  old engravings, so the photos need a human review (section 6.2).
+
+### 3.4 Previews: the current top species in each set
 
 | Set | Top species |
 |---|---|
@@ -132,8 +156,9 @@ A **set** is one subdeck. The set definitions are data, not code, and are shippe
 | Liverworts | 10 | `taxon_id = [64615]` |
 | Fungi | 50 | `taxon_id = [47170]`, `without_taxon_id = [54743]`, `exclude_sets = ["lichens"]` |
 | Lichens | 10 | `taxon_id = [54743]` |
+| Farm breeds | 25 | `breed_list = "lists/uk-farm-breeds.toml"`: 10 cattle, 10 sheep, 5 pigs. Not ranked by iNat (section 4.3). |
 
-This is **400 species** in 12 subdecks. The format looks like this:
+This is **425 cards** (400 species and 25 breeds) in 13 subdecks. The format looks like this:
 
 ```toml
 place_id = 6857
@@ -210,6 +235,36 @@ cards is bad for learning. Newcomers to the top N are added. The report lists sp
 that have dropped below the cut-off. `--rerank` rebuilds membership from scratch, and
 reports the species that left, with an Anki search, as v1 does.
 
+### 4.3 Farm breeds
+
+`lists/uk-farm-breeds.toml` is committed. Each `[[breed]]` entry has:
+
+- a stable `key`, for example `sheep/lleyn`;
+- a display `name`;
+- the `species` and its iNat `taxon_id`;
+- a `commons_category`;
+- a `wikipedia` article title;
+- `photos`, the pinned Commons file titles (section 6.2).
+
+How the set works:
+
+- **Ranking:** the order is fixed by the list, and `count` doesn't apply. The ranking
+  comes from published UK statistics, which are cited in the file header:
+  - BCMS and AHDB for cattle;
+  - the AHDB/Signet 2020 Sheep Breed Survey for sheep;
+  - British Pig Association pedigree popularity for pigs commonly kept outdoors.
+- **Cattle:** Holstein Friesian, Aberdeen Angus, Limousin, British Blue, Charolais,
+  Simmental, Hereford, Beef Shorthorn, Jersey, Highland.
+- **Sheep:** Welsh Mountain, Scottish Blackface, Swaledale, Lleyn, Mule, Texel, Suffolk,
+  Bluefaced Leicester, Cheviot, Charollais.
+- **Pigs (kept outdoors):** Gloucestershire Old Spots, British Saddleback, Oxford Sandy
+  and Black, Tamworth, Berkshire.
+- **No overlap with Mammals:** *Bos taurus*, *Ovis aries* and *Sus scrofa domesticus* are
+  excluded there, so livestock only appears here.
+- **Commercial hybrids:** most pigs seen in UK fields are commercial outdoor hybrid sows,
+  usually Large White × Landrace with Saddleback or Duroc in them. These aren't breeds,
+  so they're not in v2.
+
 ## 5. Note type, decks and identity
 
 ### 5.1 Note type
@@ -219,19 +274,19 @@ describe a single observation and don't fit a species card.
 
 | Field | Content |
 |---|---|
-| `TaxonID` | Sort field. |
+| `TaxonID` | Sort field. For breeds, the species' ID (for example 74113 for all cattle), so breeds sort together by species. |
 | `FrontPhoto` | `<img>` of the first chosen photo. |
 | `ExtraPhotos` | The other chosen photo, as an `<img>` tag. There's room for more if `photos_per_species` is raised later. |
-| `CommonName` | UK English, as in v1. |
+| `CommonName` | UK English, as in v1. For breeds, the breed name, for example "Hereford". |
 | `ScientificName` | Unformatted; the template adds italics. |
-| `Rank` | Shown only if not `species`, for example `hybrid`. |
+| `Rank` | Shown only if not `species`, for example `hybrid`. For breeds it's `breed`. |
 | `Group` | The set name, for example "Birds". |
 | `Family` | From the cached ancestry, as in v1. |
 | `Order` | As above. |
-| `UKObservations` | The UK count when the card was built, for example "43,195 UK observations". |
-| `TaxonURL` | `https://www.inaturalist.org/taxa/<id>` |
-| `PhotoCredits` | One line per photo: attribution, licence **linked to its licence deed**, and a link to the source observation. |
-| `Source` | `place:6857:<set key>` |
+| `UKObservations` | The UK count when the card was built, for example "43,195 UK observations". Empty for breeds, and the template hides it. |
+| `InfoURL` | `https://www.inaturalist.org/taxa/<id>` for species; the Wikipedia article for breeds. |
+| `PhotoCredits` | One line per photo: attribution, licence **linked to its licence deed**, and a link to the source (the iNat observation, or the Commons or Geograph photo page). |
+| `Source` | `place:6857:<set key>`, or `breed:<breed key>` |
 
 Fix this field list now, as in v1 section 7.2.
 
@@ -239,6 +294,7 @@ Fix this field list now, as in v1 section 7.2.
 |---|---|
 | Model ID | A new random constant in `[1 << 30, 1 << 31)`, hard-coded and documented in `docs/anki-identity.md` |
 | Model name | `iNaturalist species` |
+| Breed note GUID | `genanki.guid_for("breed", breed_key)`, for example `("breed", "sheep/lleyn")`. A separate namespace, so it can never collide with species notes. |
 | Note GUID | `genanki.guid_for("inat-place", place_key, taxon_id)`, where `place_key = "6857"`, as v1 section 10 planned. It's independent of the set, so a species keeps its review history if it moves between sets. |
 | Deck name | `iNaturalist::UK common species::<set name>` |
 | Deck ID | Derived from the set **key**, because sets are config-defined: the first 8 bytes of `sha256("inat-anki-deck:" + key)` mapped into `[1 << 30, 1 << 31)`. Documented and pinned in tests. |
@@ -270,8 +326,12 @@ How it works:
   a deck to share, where the tag means nothing to other people.
 - **Filtered decks:** `-tag:inat::seen` gives a filtered deck of species you haven't seen
   yet.
+- **Breeds:** breed cards never get `inat::seen`, because iNat doesn't record breeds.
+  Breed cards are tagged `breed::cattle`, `breed::sheep` or `breed::pig` instead.
 
 ## 6. Photo selection and licensing
+
+### 6.1 Species photos: iNaturalist
 
 For each species:
 
@@ -298,6 +358,49 @@ GET /v1/observations?taxon_id=<id>&place_id=6857&quality_grade=research
 5. **Licences are re-checked every run,** with one batched request per 200 chosen
    observations (`/v1/observations?id=…`), because users can change licences.
 
+### 6.2 Breed photos: Wikimedia Commons, with Geograph as a fallback
+
+Two photos per breed, from the breed's Commons category, through the MediaWiki API
+(`action=query&generator=categorymembers&prop=imageinfo&iiprop=url|mime|size|extmetadata`).
+
+1. **Licence check.** The shareable policy, mapped to Commons values from
+   `extmetadata.License`, accepts:
+   - `cc0`;
+   - `pd` (any Commons public-domain tag);
+   - `cc-by-<version>[-<jurisdiction>]`;
+   - `cc-by-sa-<version>[-<jurisdiction>]`.
+
+   Everything else is rejected, including empty values, GFDL-only files, `cc-sa-*` and
+   the Free Art Licence. A file is also rejected if its `extmetadata.Restrictions` is set,
+   for example for personality rights or trademarks.
+2. **Candidates** must be JPEG and at least 1,024 px on the long side. They're downloaded
+   as Wikimedia thumbnails (`iiurlwidth=1024`).
+3. **Pinned photos.** Breed categories mix photos with old engravings, show ribbons and
+   herds seen from far away, so the photos are **chosen once by a person and pinned** in
+   `photos` in the breeds list. `inat-anki species --suggest-breed-photos` writes a local
+   HTML page of the licence-checked candidates for each breed, with their credits, to make
+   the choice quick. Until a breed has pinned photos, the build uses the first two
+   candidates and lists the breed in the report as "unreviewed".
+4. **Re-checks.** Each run re-checks the pinned files' licences and that they still exist.
+   That's one batched `prop=imageinfo` request per 50 titles. A file that fails is
+   dropped, and the breed is listed for review.
+5. **Fallback:** Geograph Britain and Ireland. All Geograph images are CC BY-SA 2.0 and
+   from the UK. It's for breeds whose Commons categories are too thin: Lleyn, Mule and
+   Beef Shorthorn. The Geograph API needs a free key, set in config. This is unverified,
+   and must be checked before building. Geograph credits name the photographer and link
+   the photo page.
+6. **Attribution:**
+   - **Commons:** the `Artist` value as text (HTML tags stripped), or the `Attribution`
+     value when there is one; then `LicenseShortName` linked to `LicenseUrl`; then a link
+     to the file's description page.
+   - **Geograph:** "© photographer", then CC BY-SA 2.0 linked to its deed, then a link to
+     the photo page.
+7. **Etiquette:** a `User-Agent` with the project URL, as Wikimedia's policy requires.
+   Requests are made one at a time, through the same 1 request/s throttle as iNat. Commons
+   API requests also send `maxlag=5`.
+
+### 6.3 Licence policies
+
 `licensing.py` gains a policy parameter:
 
 | Policy | Accepts | Used by |
@@ -316,7 +419,8 @@ Photos are included as iNat serves them, at `large` size, with no edits by us.
 opened. It states:
 
 - that the photos are by iNaturalist users, under CC0, CC BY or CC BY-SA, as credited
-  on each card;
+  on each card; and that breed photos come from Wikimedia Commons (CC0, public domain, CC
+  BY or CC BY-SA) or Geograph (CC BY-SA 2.0);
 - that CC BY-SA photos remain under CC BY-SA;
 - that the data comes from iNaturalist.
 
@@ -330,6 +434,7 @@ inat-anki species
     [--only birds,mammals]      build just these sets (other subdecks are left out of the .apkg)
     [--seen-by <login>]         overrides seen_by from the sets file; "" turns it off
     [--rerank] [--reselect-photos]
+    [--suggest-breed-photos]    write an HTML page of licence-checked Commons candidates per breed
     [--photo-size large|medium] [--warn-threshold] [--max-downloads] [--yes]
     [--rate] [--dry-run] [--prune] [--force] [--verbose]
 ```
@@ -360,7 +465,9 @@ The run report is v1's, plus:
 | Photo search, one per species | about 400, plus fallbacks | new or replaced species only |
 | Licence re-check, 200 observations per request | 0 | about 4 |
 | Photo downloads (400 × 2) | about 800 | new or replaced photos only |
-| **Total** | **about 1,230 requests, about 21 min** | **about 20 requests** |
+| Commons: breed categories (25) and licence re-checks (1 per 50 files) | about 26 | 1 |
+| Breed photo downloads (25 × 2) | 50 | new or replaced photos only |
+| **Total** | **about 1,310 requests, about 22 min** | **about 21 requests** |
 
 CC photos on the S3 host were about 212 KB at `large` in the v1 sample, so the first run
 is about 170 to 530 MB. That's far under the 4.5 GB per hour limit. The first run goes
@@ -378,6 +485,10 @@ The v1 split between modules with no I/O and thin I/O modules is unchanged:
 - **`render_species.py`** (no I/O): species → note fields, tags and hash.
 - **`sources.py`:** adds `PlaceSpeciesSource` (`species_counts` and photo search), and
   reuses `UserObservationsSource` for `seen`.
+- **`breeds.py`** (no I/O): parse and validate the breeds list, map Commons licence
+  values to the policy, choose pinned or candidate photos, and build breed attribution.
+- **`commons.py`** (I/O): the MediaWiki API client for category members, image info and
+  thumbnails, through the shared throttle. `geograph.py` is the same for Geograph.
 - **`deck.py`:** gains the species model, derived deck IDs, the deck description and
   multi-deck packages. genanki's `Package` accepts a list of decks.
 - **`cli.py`:** adds the `species` subcommand, and shares the throttle, client, media
@@ -418,13 +529,23 @@ Required cases:
   - deck IDs are derived deterministically and pinned in tests;
   - the species GUID is the same whichever set the species is in;
   - the model ID is constant.
-- **Package:** the `.apkg` has 12 decks with the right names; notes have the right
+- **Breeds:**
+  - Commons licence mapping: every value seen in section 3.3 is accepted or rejected
+    correctly, and so are an empty value, GFDL, `cc-sa-1.0` and `Restrictions`;
+  - pinned photos are used before candidates;
+  - a pinned file that has been deleted, or whose licence changed, is dropped and
+    reported;
+  - the Geograph fallback;
+  - breed GUIDs are stable;
+  - no `inat::seen` on breed cards.
+- **Package:** the `.apkg` has 13 decks with the right names; notes have the right
   model; the deck description is present; there are no duplicate GUIDs.
 
 Acceptance, done manually:
 
-1. The first run builds about 400 cards in 12 subdecks, every photo is CC0, CC BY or CC
-   BY-SA, and every card shows credits with licence links.
+1. The first run builds 425 cards in 13 subdecks, every photo is CC0, CC BY or CC
+   BY-SA (or, for breed photos, public domain), and every card shows credits with
+   licence links.
 2. Species you've observed (including Red Campion, House Sparrow and Hornbeam) carry
    `inat::seen`.
 3. An immediate second run downloads no photos and makes about 20 requests.
@@ -441,6 +562,14 @@ Acceptance, done manually:
 
 ## 12. Open questions
 
-None. The last two were settled on 2026-10-10: 50 insects and 20 grasses, and Grasses
-means true grasses (Poaceae) only, with sedges (Cyperaceae) and rushes (Juncaceae) staying
-in Plants.
+1. **Cattle #10:** Highland is used: it's very visible in the uplands and in
+   conservation grazing, and has good photos. Welsh Black or South Devon may be more
+   numerous. Swap?
+2. **Pigs #5:** Berkshire is used. Large Black is the classic outdoor breed, but it has
+   fewer usable photos (4). Swap?
+3. **Geograph:** is it acceptable to register for a free Geograph API key, for the Lleyn,
+   Mule and Beef Shorthorn photos? If not, those three breeds use the best Commons photos
+   available, even if they're few.
+
+Settled on 2026-10-10: 50 insects and 20 grasses, and Grasses means true grasses
+(Poaceae) only, with sedges (Cyperaceae) and rushes (Juncaceae) staying in Plants.

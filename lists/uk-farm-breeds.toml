@@ -1,0 +1,248 @@
+# UK farm breeds for the v2 "Farm breeds" set: 10 cattle, 10 sheep, 5 outdoor pigs.
+#
+# Breeds are not taxa on iNaturalist, and farm animals are recorded as captive (casual
+# grade), so photos come from Wikimedia Commons instead (SPEC-v2 section 6.2). Each
+# breed's Commons category and Wikipedia article were checked on 2026-10-10
+# (scripts/verify_v2_breeds*.py).
+#
+# The rank order is indicative. It is based on:
+#   Cattle: BCMS registrations as reported by AHDB (Holstein Friesian 19% of the GB herd,
+#     Aberdeen Angus cross just under 12% on 1 Jan 2023) and by breed societies (Limousin,
+#     Aberdeen Angus, Charolais, British Blue and Simmental lead the beef-sired
+#     registrations).
+#   Sheep: the AHDB/Signet 2020 Sheep Breed Survey (Welsh Mountain, Scottish Blackface and
+#     Swaledale lead the purebred hill ewes; Lleyn leads the non-hill ewes; Mules are about
+#     19% of the national flock; Texel and Suffolk are the most-used rams; Bluefaced
+#     Leicester sires the Mule).
+#   Pigs: native breeds commonly kept outdoors, ranked by pedigree popularity as reported
+#     by the British Pig Association (Gloucestershire Old Spots, then British Saddleback,
+#     then Oxford Sandy and Black).
+# Highland (cattle #10) and Berkshire (pigs #5) are judgement calls; see SPEC-v2 section 12.
+#
+# Never change a `key`: note GUIDs are built from it. `photos` pins reviewed Commons file
+# titles; it is filled once by the photo-review step (SPEC-v2 section 6.2) and starts empty.
+
+[[breed]]
+key = "cattle/holstein-friesian"
+name = "Holstein Friesian"
+species = "Bos taurus"
+taxon_id = 74113
+commons_category = "Holstein Friesian cattle"
+wikipedia = "Holstein Friesian"
+photos = []
+
+[[breed]]
+key = "cattle/aberdeen-angus"
+name = "Aberdeen Angus"
+species = "Bos taurus"
+taxon_id = 74113
+commons_category = "Angus cattle"
+wikipedia = "Aberdeen Angus"
+photos = []
+
+[[breed]]
+key = "cattle/limousin"
+name = "Limousin"
+species = "Bos taurus"
+taxon_id = 74113
+commons_category = "Limousin cattle"
+wikipedia = "Limousin cattle"
+photos = []
+
+[[breed]]
+key = "cattle/british-blue"
+name = "British Blue"
+species = "Bos taurus"
+taxon_id = 74113
+commons_category = "Belgian Blue cattle"
+wikipedia = "Belgian Blue"
+photos = []
+
+[[breed]]
+key = "cattle/charolais"
+name = "Charolais"
+species = "Bos taurus"
+taxon_id = 74113
+commons_category = "Charolais cattle"
+wikipedia = "Charolais cattle"
+photos = []
+
+[[breed]]
+key = "cattle/simmental"
+name = "Simmental"
+species = "Bos taurus"
+taxon_id = 74113
+commons_category = "Simmental cattle"
+wikipedia = "Simmental cattle"
+photos = []
+
+[[breed]]
+key = "cattle/hereford"
+name = "Hereford"
+species = "Bos taurus"
+taxon_id = 74113
+commons_category = "Hereford cattle"
+wikipedia = "Hereford cattle"
+photos = []
+
+[[breed]]
+key = "cattle/beef-shorthorn"
+name = "Beef Shorthorn"
+species = "Bos taurus"
+taxon_id = 74113
+commons_category = "Beef Shorthorn"   # only 4 files: Geograph fallback likely
+wikipedia = "Beef Shorthorn"
+photos = []
+
+[[breed]]
+key = "cattle/jersey"
+name = "Jersey"
+species = "Bos taurus"
+taxon_id = 74113
+commons_category = "Jersey cattle"
+wikipedia = "Jersey cattle"
+photos = []
+
+[[breed]]
+key = "cattle/highland"
+name = "Highland"
+species = "Bos taurus"
+taxon_id = 74113
+commons_category = "Highland cattle"
+wikipedia = "Highland cattle"
+photos = []
+
+[[breed]]
+key = "sheep/welsh-mountain"
+name = "Welsh Mountain"
+species = "Ovis aries"
+taxon_id = 121578
+commons_category = "Welsh Mountain sheep"
+wikipedia = "Welsh Mountain sheep"
+photos = []
+
+[[breed]]
+key = "sheep/scottish-blackface"
+name = "Scottish Blackface"
+species = "Ovis aries"
+taxon_id = 121578
+commons_category = "Scottish Blackface"
+wikipedia = "Scottish Blackface"
+photos = []
+
+[[breed]]
+key = "sheep/swaledale"
+name = "Swaledale"
+species = "Ovis aries"
+taxon_id = 121578
+commons_category = "Swaledale sheep"
+wikipedia = "Swaledale sheep"
+photos = []
+
+[[breed]]
+key = "sheep/lleyn"
+name = "Lleyn"
+species = "Ovis aries"
+taxon_id = 121578
+commons_category = "Lleyn sheep"   # only 2 files: Geograph fallback needed
+wikipedia = "Lleyn sheep"
+photos = []
+
+[[breed]]
+key = "sheep/mule"
+name = "Mule (North of England, Welsh and Scotch)"
+species = "Ovis aries"
+taxon_id = 121578
+commons_category = "Mule sheep"   # only 2 files: Geograph fallback needed
+wikipedia = "Mule (sheep)"
+photos = []
+
+[[breed]]
+key = "sheep/texel"
+name = "Texel"
+species = "Ovis aries"
+taxon_id = 121578
+commons_category = "Texel (sheep)"
+wikipedia = "Texel sheep"
+photos = []
+
+[[breed]]
+key = "sheep/suffolk"
+name = "Suffolk"
+species = "Ovis aries"
+taxon_id = 121578
+commons_category = "Suffolk sheep"
+wikipedia = "Suffolk sheep"
+photos = []
+
+[[breed]]
+key = "sheep/bluefaced-leicester"
+name = "Bluefaced Leicester"
+species = "Ovis aries"
+taxon_id = 121578
+commons_category = "Bluefaced Leicester"
+wikipedia = "Bluefaced Leicester"
+photos = []
+
+[[breed]]
+key = "sheep/cheviot"
+name = "Cheviot"
+species = "Ovis aries"
+taxon_id = 121578
+commons_category = "Cheviot sheep"
+wikipedia = "Cheviot sheep"
+photos = []
+
+[[breed]]
+key = "sheep/charollais"
+name = "Charollais"
+species = "Ovis aries"
+taxon_id = 121578
+commons_category = "Charollais"
+wikipedia = "Charollais sheep"
+photos = []
+
+[[breed]]
+key = "pig/gloucestershire-old-spots"
+name = "Gloucestershire Old Spots"
+species = "Sus scrofa domesticus"
+taxon_id = 324492
+commons_category = "Gloucestershire Old Spots"
+wikipedia = "Gloucestershire Old Spots"
+photos = []
+
+[[breed]]
+key = "pig/british-saddleback"
+name = "British Saddleback"
+species = "Sus scrofa domesticus"
+taxon_id = 324492
+commons_category = "British Saddleback"
+wikipedia = "British Saddleback"
+photos = []
+
+[[breed]]
+key = "pig/oxford-sandy-and-black"
+name = "Oxford Sandy and Black"
+species = "Sus scrofa domesticus"
+taxon_id = 324492
+commons_category = "Oxford Sandy and Black"
+wikipedia = "Oxford Sandy and Black"
+photos = []
+
+[[breed]]
+key = "pig/tamworth"
+name = "Tamworth"
+species = "Sus scrofa domesticus"
+taxon_id = 324492
+commons_category = "Tamworth pig"
+wikipedia = "Tamworth pig"
+photos = []
+
+[[breed]]
+key = "pig/berkshire"
+name = "Berkshire"
+species = "Sus scrofa domesticus"
+taxon_id = 324492
+commons_category = "Berkshire pig"   # many PD files are old illustrations: review needed
+wikipedia = "Berkshire pig"
+photos = []

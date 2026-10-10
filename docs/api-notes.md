@@ -184,3 +184,25 @@ From `scripts/verify_v2_sets.py` and `scripts/verify_v2_trees_resolve.py`.
   `rank=species,hybrid`.
 - **Limits:** `species_counts` returns 500 results with `per_page=500`, and
   `/v1/observations?id=` returned all 71 of 71 requested IDs.
+
+### 8.2 Farm breeds: checked on 2026-10-10
+
+From `scripts/verify_v2_breeds.py`, `verify_v2_breeds_2.py` and `verify_v2_breeds_3.py`.
+
+- **iNat:** breeds aren't taxa. The "Breed" observation field (ID 3905; the similarly
+  named "Breeding", ID 267, is unrelated) has 371 values worldwide, only 2 of them on UK
+  cattle and 1 on UK sheep. UK observations with CC0, CC BY or CC BY-SA photos number 202
+  for *Bos taurus*, 344 for *Ovis aries* and 32 for *Sus scrofa domesticus*, at any
+  grade, with no breed information. They're unusable for breed cards.
+- **Wikimedia Commons:** the MediaWiki API, `action=query&titles=Category:…&prop=categoryinfo`,
+  checks up to 50 categories per request.
+  - Categories exist for all 25 breeds in `lists/uk-farm-breeds.toml`. Some names
+    differ from the obvious ones: `Angus cattle`, `Belgian Blue cattle`, `Texel (sheep)`,
+    `Scottish Blackface`, `Charollais` and `Tamworth pig`.
+  - `extmetadata.License` holds values such as `cc-by-sa-4.0`, `cc-by-2.0`,
+    `cc-by-sa-3.0-de`, `cc0`, `pd` and `cc-sa-1.0`, or an empty string.
+  - `extmetadata` can be an empty **list** rather than an object for some files, so
+    handle that case.
+- **Thin categories:** Lleyn sheep (2 files), Mule sheep (2) and Beef Shorthorn (4).
+- **Wikipedia:** all 25 articles exist. British Blue is covered by "Belgian Blue", and
+  the Mule by "Mule (sheep)".
