@@ -124,3 +124,90 @@ On obscured observations (4 on the test account; all checked anonymously):
   ancestors. Using it would mean looking up every ancestor ID, so we don't.
 - Some ancestors have no common name (for example *Pezizales*). Tags use scientific names
   only.
+
+## 8. Common-species decks (v2): checked on 2026-10-10
+
+From `scripts/verify_v2.py`. These checks underpin SPEC-v2.md.
+
+- **Taxon IDs** (from `/v1/taxa?q=`, exact name match):
+  - Aves 3; Fungi 47170 ("Fungi Including Lichens"); Lecanoromycetes 54743 ("Common
+    Lichens");
+  - Bryophyta 311249; Marchantiophyta 64615; Plantae 47126; Polypodiopsida 121943;
+    Pinopsida 136329; Magnoliopsida 47124;
+  - Reptilia 26036; Amphibia 20978; Mammalia 40151.
+- **Ranking:** `/v1/observations/species_counts` with `place_id=6857`,
+  `quality_grade=research`, `captive=false` and `rank=species` ranks species by count.
+  The top UK birds are European Robin (43,195), Mallard (40,776) and Common Wood-Pigeon
+  (34,668). There are 598 bird species in total.
+- **Exclusions:** `without_taxon_id` works on `species_counts`. Fungi without
+  Lecanoromycetes starts with Amanita muscaria and Auricularia auricula-judae.
+  Lecanoromycetes starts with Xanthoria parietina, Evernia prunastri and Parmelia
+  sulcata.
+- **Default photos are often unusable for sharing.** Of the top 10 UK birds, 2 default
+  photos are all rights reserved (Robin and Mute Swan) and 3 are NC or NC-SA.
+- **Licence filter:** `photo_license=cc0,cc-by,cc-by-sa` on `/v1/observations` filters
+  correctly. The UK Robin has 2,021 research-grade observations with such photos, all
+  served from `inaturalist-open-data.s3.amazonaws.com`.
+- **A list in `taxon_id` matches descendants.** On `species_counts`, a list of IDs
+  returns every descendant of each listed taxon. A genus ID in the list brought back
+  several *Artemisia* species, for example. Filter results down to the listed IDs.
+- **Votes:** `order_by=votes` makes little difference, because most observations have 0
+  or 1 votes.
+
+### 8.1 Set definitions: checked on 2026-10-10
+
+From `scripts/verify_v2_sets.py` and `scripts/verify_v2_trees_resolve.py`.
+
+- **More taxon IDs:**
+  - Insecta 47158; Poaceae 47434; Anthocerotophyta 56327; Rhodophyta 57774;
+    Chlorophyta 50863; Ulvophyceae 51429; Phaeophyceae 48220;
+  - Echinodermata 47549; Cnidaria 47534; Cirripedia 210289; Brachyura 121639;
+    Polyplacophora 47429;
+  - Littorinidae 48918; Patellidae 51740; Mytilidae 50600; Cardiidae 50597;
+    Trochidae 53830; Muricidae 50766;
+  - Domestic mammals: *Homo sapiens* 43584; *Canis familiaris* 47144; *Felis catus*
+    118552; *Bos taurus* 74113; *Ovis aries* 121578; *Sus scrofa domesticus* 324492
+    (a subspecies; *Sus domesticus* doesn't exist on iNat).
+- **Research grade excludes captive and cultivated observations.** `species_counts` gives
+  identical results with and without `captive=false`. So no domestic mammal appears in
+  the top 15 UK research-grade mammals.
+- **Planted trees** are casual grade (cultivated). With `quality_grade=research,casual`,
+  monkey puzzle, Japanese cherry, Lawson cypress, box and common lime enter the top 50
+  trees.
+- **Name clash with "complex" taxa.** `/v1/taxa?q=Quercus robur` returns both the species
+  (56133) and a same-named `complex` (1520309) that has more observations. The same
+  applies to *Acer pseudoplatanus*, *Crataegus monogyna*, *Crataegus laevigata*,
+  *Sambucus nigra*, *Viburnum opulus*, *Ulmus minor*, *Quercus ilex* and *Quercus
+  petraea*. When resolving a name, prefer rank `species` or `hybrid`.
+- **Hybrids** (*Platanus × hispanica*, *Tilia × europaea*, *Salix × fragilis*,
+  *Ulmus × hollandica*) have rank `hybrid`. `rank=species` drops them; use
+  `rank=species,hybrid`.
+- **Limits:** `species_counts` returns 500 results with `per_page=500`, and
+  `/v1/observations?id=` returned all 71 of 71 requested IDs.
+
+### 8.2 Farm breeds: checked on 2026-10-10
+
+From `scripts/verify_v2_breeds.py`, `verify_v2_breeds_2.py` and `verify_v2_breeds_3.py`.
+
+- **iNat:** breeds aren't taxa. The "Breed" observation field (ID 3905; the similarly
+  named "Breeding", ID 267, is unrelated) has 371 values worldwide, only 2 of them on UK
+  cattle and 1 on UK sheep. UK observations with CC0, CC BY or CC BY-SA photos number 202
+  for *Bos taurus*, 344 for *Ovis aries* and 32 for *Sus scrofa domesticus*, at any
+  grade, with no breed information. They're unusable for breed cards.
+- **Wikimedia Commons:** the MediaWiki API, `action=query&titles=Category:…&prop=categoryinfo`,
+  checks up to 50 categories per request.
+  - Categories exist for all 25 breeds in `lists/uk-farm-breeds.toml`. Some names
+    differ from the obvious ones: `Angus cattle`, `Belgian Blue cattle`, `Texel (sheep)`,
+    `Scottish Blackface`, `Charollais` and `Tamworth pig`.
+  - `extmetadata.License` holds values such as `cc-by-sa-4.0`, `cc-by-2.0`,
+    `cc-by-sa-3.0-de`, `cc0`, `pd` and `cc-sa-1.0`, or an empty string.
+  - `extmetadata` can be an empty **list** rather than an object for some files, so
+    handle that case.
+- **Thin categories:** Lleyn sheep (2 files), Mule sheep (2) and Beef Shorthorn (4). A
+  File-namespace search (`generator=search&gsrnamespace=6`) for the breed name adds
+  photos that aren't in the category. That gives shareable JPEGs of at least 1,024 px:
+  Lleyn 3, Mule 2 and Beef Shorthorn 5. Many are Geograph photos copied to Commons. The
+  results include other breeds (searching "mule sheep" also returned a Texel photo), so
+  candidates need a human review (`scripts/verify_v2_breeds_4.py`).
+- **Wikipedia:** all 25 articles exist. British Blue is covered by "Belgian Blue", and
+  the Mule by "Mule (sheep)".
