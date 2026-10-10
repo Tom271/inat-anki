@@ -425,7 +425,7 @@ Acceptance, done manually:
 
 1. The first run builds about 400 cards in 12 subdecks, every photo is CC0, CC BY or CC
    BY-SA, and every card shows credits with licence links.
-2. Species you've observed (including Lucerne, House Sparrow and Red Campion) carry
+2. Species you've observed (including Red Campion, House Sparrow and Hornbeam) carry
    `inat::seen`.
 3. An immediate second run downloads no photos and makes about 20 requests.
 4. Importing on top of the v1 deck leaves `iNaturalist::My observations` untouched.
