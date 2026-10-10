@@ -56,6 +56,7 @@ def parse_breeds(raw: dict) -> list[Breed]:
                 commons_category=b["commons_category"],
                 wikipedia=b["wikipedia"],
                 photos=tuple(b.get("photos") or ()),
+                search=b.get("search", ""),
             )
         )
     keys = [b.key for b in out]
