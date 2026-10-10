@@ -123,7 +123,86 @@ def build_parser() -> argparse.ArgumentParser:
     )
     sync.add_argument("--config", type=Path, help=f"config file (default ./{CONFIG_FILE})")
     sync.add_argument("--verbose", "-v", action="store_true", default=None)
+
+    sp = sub.add_parser(
+        "species",
+        help="build the shareable common-species decks (SPEC-v2)",
+        description="Build one .apkg of common UK species and farm breeds, with a subdeck per "
+        "set, using only photos that may be shared (CC0, CC BY, CC BY-SA).",
+    )
+    sp.add_argument("--sets", help="sets file (default: the bundled uk-common.toml)")
+    sp.add_argument("--out", help="output .apkg (default ./iNaturalist-UK-common-<date>.apkg)")
+    sp.add_argument("--cache-dir", help="cache and state (default inat-cache-species)")
+    sp.add_argument("--only", help="build just these sets, comma-separated keys")
+    sp.add_argument("--seen-by", help='tag species this login has observed; "" turns it off')
+    sp.add_argument(
+        "--rerank",
+        action="store_true",
+        default=None,
+        help="rebuild set membership from the current ranking",
+    )
+    sp.add_argument(
+        "--reselect-photos",
+        action="store_true",
+        default=None,
+        help="choose photos afresh instead of keeping earlier choices",
+    )
+    sp.add_argument(
+        "--suggest-breed-photos",
+        action="store_true",
+        default=None,
+        help="write an HTML page of Commons candidates for each breed, then stop",
+    )
+    sp.add_argument("--photo-size", choices=PHOTO_SIZES, help="default large")
+    sp.add_argument("--refresh-photos", action="store_true", default=None)
+    sp.add_argument("--warn-threshold", type=int, help="default 200")
+    sp.add_argument("--max-downloads", type=int)
+    sp.add_argument("--yes", "-y", action="store_true", default=None)
+    sp.add_argument("--rate", type=float, help="requests per second (default 0.8, max 1.1)")
+    sp.add_argument(
+        "--dry-run",
+        action="store_true",
+        default=None,
+        help="rank and choose photos, then stop: no downloads, no deck",
+    )
+    sp.add_argument("--prune", action="store_true", default=None)
+    sp.add_argument("--force", action="store_true", default=None)
+    sp.add_argument("--verbose", "-v", action="store_true", default=None)
     return parser
+
+
+SPECIES_DEFAULTS = {
+    "sets": None,
+    "out": None,
+    "cache_dir": "inat-cache-species",
+    "only": None,
+    "seen_by": None,
+    "rerank": False,
+    "reselect_photos": False,
+    "suggest_breed_photos": False,
+    "photo_size": "large",
+    "refresh_photos": False,
+    "warn_threshold": 200,
+    "max_downloads": None,
+    "yes": False,
+    "rate": 0.8,  # slower than sync: 1/s drew HTTP 429s on the first live build
+    "dry_run": False,
+    "prune": False,
+    "force": False,
+    "verbose": False,
+}
+
+
+def resolve_species_settings(args: argparse.Namespace) -> dict:
+    settings = {**SPECIES_DEFAULTS}
+    settings.update(
+        {k: v for k, v in vars(args).items() if k in SPECIES_DEFAULTS and v is not None}
+    )
+    try:
+        settings["interval"] = interval_for_rate(float(settings["rate"]))
+    except RateTooHighError as e:
+        raise UsageError(str(e)) from e
+    return settings
 
 
 def load_config(path: Path | None) -> dict:
@@ -450,6 +529,15 @@ def finish(report: Report, st, cache_dir: Path, out, clock: Clock) -> int:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
+        if args.command == "species":
+            from inat_anki.breeds import BreedsError
+            from inat_anki.sets import SetsError
+            from inat_anki.species_sync import species
+
+            try:
+                return species(resolve_species_settings(args))
+            except (SetsError, BreedsError) as e:
+                raise UsageError(str(e)) from e
         settings = resolve_settings(args)
         return sync(settings)
     except (UsageError, state_mod.StateError) as e:

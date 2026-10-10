@@ -56,6 +56,39 @@ Settings can also live in `inat-anki.toml` in the current directory, or in the f
 with `--config`. Flags override the file. Copy
 [`inat-anki.example.toml`](inat-anki.example.toml) to start.
 
+## Common UK species decks (shareable)
+
+```sh
+inat-anki species
+```
+
+This builds `iNaturalist-UK-common-<YYYY-MM-DD>.apkg`, with a subdeck per group under
+**iNaturalist::UK common species**, about 425 cards in all. The groups are:
+
+- birds, mammals, and reptiles and amphibians;
+- insects and seashore life;
+- trees, plants and grasses;
+- mosses, liverworts, fungi and lichens;
+- the commonest farm breeds.
+
+Species are ranked by UK research-grade observations on iNaturalist. Each card has two
+photos, and **every photo is CC0, CC BY or CC BY-SA**, so the deck can be shared. Each card
+credits its photographers, with links to the licence and the source. Farm breed photos
+come from Wikimedia Commons.
+
+- **Your sightings:** species you have observed are tagged `inat::seen`. Set `seen_by`
+  in the sets file, or pass `--seen-by ""` when building a deck to share.
+- **Run time:** the first run makes about 1,300 requests (about 30 minutes, at 0.8
+  requests per second) and asks before downloading. Later runs make a few dozen requests.
+- **Sticky groups:** groups only grow. Use `--rerank` to rebuild them from the current
+  ranking.
+- **Breed photos:** run `inat-anki species --suggest-breed-photos` to get a page of
+  licence-checked Commons candidates for each breed. Copy your picks into the breed's
+  `photos` list in `src/inat_anki/data/lists/uk-farm-breeds.toml`.
+- **Customising:** the sets are defined in
+  [`src/inat_anki/data/uk-common.toml`](src/inat_anki/data/uk-common.toml). Copy it and
+  pass it with `--sets` to build your own groups.
+
 ## Importing into Anki
 
 1. In Anki desktop, choose **File → Import…** and pick the `.apkg`.

@@ -18,6 +18,7 @@ from inat_anki.sets import (
 from tests.conftest import load_fixture
 
 ROOT = Path(__file__).parent.parent
+DATA = ROOT / "src/inat_anki/data"
 
 
 def ranked(*ids):
@@ -30,7 +31,7 @@ def minimal(**overrides):
 
 
 def test_shipped_sets_file_parses():
-    config = parse_sets(tomllib.loads((ROOT / "sets/uk-common.toml").read_text()))
+    config = parse_sets(tomllib.loads((DATA / "uk-common.toml").read_text()))
     keys = [s.key for s in config.sets]
     assert len(keys) == 13
     assert config.photos_per_species == 2
@@ -46,7 +47,7 @@ def test_shipped_sets_file_parses():
 
 
 def test_shipped_tree_list_parses():
-    trees = parse_species_list((ROOT / "lists/uk-trees.txt").read_text())
+    trees = parse_species_list((DATA / "lists/uk-trees.txt").read_text())
     assert len(trees) == 79
     by_name = {t.name: t.taxon_id for t in trees}
     assert by_name["Quercus robur"] == 56133  # the species, not the same-named complex
@@ -172,3 +173,10 @@ def test_seen_empty():
 def test_observation_type_unchanged():
     # Observation still constructs as in v1 (ancestor_ids has a default).
     assert Observation.__dataclass_fields__["taxon"]
+
+
+def test_sticky_members_in_top_are_not_below_cutoff():
+    # Previous members need no photo search, so they are not in `accepted`.
+    m = plan_membership([1, 2], ranked(1, 2, 3, 4), 3, accepted={4})
+    assert m.members == [1, 2, 4]
+    assert m.below_cutoff == []

@@ -19,6 +19,7 @@ from inat_anki.breeds import (
 from tests.conftest import load_fixture
 
 ROOT = Path(__file__).parent.parent
+DATA = ROOT / "src/inat_anki/data"
 
 
 @pytest.fixture
@@ -29,7 +30,7 @@ def files():
 
 @pytest.fixture
 def breeds():
-    return parse_breeds(tomllib.loads((ROOT / "lists/uk-farm-breeds.toml").read_text()))
+    return parse_breeds(tomllib.loads((DATA / "lists/uk-farm-breeds.toml").read_text()))
 
 
 def test_shipped_breed_list(breeds):

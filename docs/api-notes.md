@@ -211,3 +211,15 @@ From `scripts/verify_v2_breeds.py`, `verify_v2_breeds_2.py` and `verify_v2_breed
   candidates need a human review (`scripts/verify_v2_breeds_4.py`).
 - **Wikipedia:** all 25 articles exist. British Blue is covered by "Belgian Blue", and
   the Mule by "Mule (sheep)".
+
+### 8.3 The first live species build: 2026-10-10
+
+`inat-anki species --yes` at 1 request/s:
+
+- **Requests:** 1,335 in total. That's about 430 iNat photo searches and rankings, plus
+  848 photo downloads (391.7 MB): 821 from iNat and 27 from Commons.
+- **Throttling:** iNat returned **HTTP 429 ten times** during the photo-search phase.
+  Each one succeeded after the first 2-second backoff, and the downloads drew none.
+  Because of this, the species command now defaults to 0.8 requests per second.
+- **Result:** 425 cards, with every set filled. No species was skipped for lack of a
+  shareable photo.

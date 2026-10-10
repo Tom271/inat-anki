@@ -1,5 +1,6 @@
 # Common UK species decks (SPEC-v2 section 4). Build with: inat-anki species
 #
+# Paths (species_list, breed_list) are relative to this file.
 # Never rename a set `key`: deck IDs and state are derived from it. Taxon IDs were checked
 # against iNaturalist on 2026-10-10 (docs/api-notes.md section 8).
 
