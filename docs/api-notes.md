@@ -124,3 +124,32 @@ On obscured observations (4 on the test account; all checked anonymously):
   ancestors. Using it would mean looking up every ancestor ID, so we don't.
 - Some ancestors have no common name (for example *Pezizales*). Tags use scientific names
   only.
+
+## 8. Common-species decks (v2): checked on 2026-10-10
+
+From `scripts/verify_v2.py`. These checks underpin SPEC-v2.md.
+
+- **Taxon IDs** (from `/v1/taxa?q=`, exact name match):
+  - Aves 3; Fungi 47170 ("Fungi Including Lichens"); Lecanoromycetes 54743 ("Common
+    Lichens");
+  - Bryophyta 311249; Marchantiophyta 64615; Plantae 47126; Polypodiopsida 121943;
+    Pinopsida 136329; Magnoliopsida 47124;
+  - Reptilia 26036; Amphibia 20978; Mammalia 40151.
+- **Ranking:** `/v1/observations/species_counts` with `place_id=6857`,
+  `quality_grade=research`, `captive=false` and `rank=species` ranks species by count.
+  The top UK birds are European Robin (43,195), Mallard (40,776) and Common Wood-Pigeon
+  (34,668). There are 598 bird species in total.
+- **Exclusions:** `without_taxon_id` works on `species_counts`. Fungi without
+  Lecanoromycetes starts with Amanita muscaria and Auricularia auricula-judae.
+  Lecanoromycetes starts with Xanthoria parietina, Evernia prunastri and Parmelia
+  sulcata.
+- **Default photos are often unusable for sharing.** Of the top 10 UK birds, 2 default
+  photos are all rights reserved (Robin and Mute Swan) and 3 are NC or NC-SA.
+- **Licence filter:** `photo_license=cc0,cc-by,cc-by-sa` on `/v1/observations` filters
+  correctly. The UK Robin has 2,021 research-grade observations with such photos, all
+  served from `inaturalist-open-data.s3.amazonaws.com`.
+- **A list in `taxon_id` matches descendants.** On `species_counts`, a list of IDs
+  returns every descendant of each listed taxon. A genus ID in the list brought back
+  several *Artemisia* species, for example. Filter results down to the listed IDs.
+- **Votes:** `order_by=votes` makes little difference, because most observations have 0
+  or 1 votes.
