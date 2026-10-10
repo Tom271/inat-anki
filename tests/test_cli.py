@@ -3,6 +3,7 @@ import re
 import sqlite3
 import zipfile
 from datetime import datetime
+from pathlib import Path
 
 import pytest
 import responses
@@ -270,3 +271,11 @@ def test_default_out_name_has_user_and_date(tmp_path, monkeypatch):
     assert (tmp_path / "iNaturalist-example_user-2026-10-10.apkg").is_file()
     report = json.loads((tmp_path / "cache" / "last-run.json").read_text())
     assert report["deck"] == "iNaturalist-example_user-2026-10-10.apkg"
+
+
+def test_example_config_is_valid():
+    example = Path(__file__).parent.parent / "inat-anki.example.toml"
+    args = cli.build_parser().parse_args(["sync", "--config", str(example)])
+    s = cli.resolve_settings(args)
+    assert s["user"] == "your-inat-login"
+    assert s["place_id"] == 6857
