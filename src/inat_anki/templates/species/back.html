@@ -1,0 +1,27 @@
+{{FrontSide}}
+
+<hr id="answer">
+
+<div class="inat back species {{Tags}}">
+  <div class="group">{{Group}}<span class="seen-badge"> · Seen by you</span></div>
+  {{#CommonName}}
+  <h1 class="common-name">{{CommonName}}</h1>
+  <div class="scientific-name"><i>{{ScientificName}}</i>{{#Rank}} <span class="rank">({{Rank}})</span>{{/Rank}}</div>
+  {{/CommonName}}
+  {{^CommonName}}
+  <h1 class="common-name"><i>{{ScientificName}}</i></h1>
+  {{#Rank}}<div class="scientific-name"><span class="rank">({{Rank}})</span></div>{{/Rank}}
+  {{/CommonName}}
+
+  <div class="details">
+    {{#Family}}<div class="taxonomy">{{Family}}{{#Order}} · {{Order}}{{/Order}}</div>{{/Family}}
+    {{#UKObservations}}<div class="uk-count">{{UKObservations}}</div>{{/UKObservations}}
+  </div>
+
+  {{#ExtraPhotos}}<div class="extra-photos">{{ExtraPhotos}}</div>{{/ExtraPhotos}}
+
+  <div class="credits">
+    {{PhotoCredits}}
+    <div class="obs-link"><a href="{{InfoURL}}">Learn more</a></div>
+  </div>
+</div>

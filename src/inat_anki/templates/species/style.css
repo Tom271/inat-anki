@@ -1,0 +1,34 @@
+/* Added to the v1 stylesheet for species and breed cards. */
+
+.group {
+  font-size: 0.75em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+/* Shown only on cards tagged inat::seen; {{Tags}} puts the tags in the class list. */
+.seen-badge {
+  display: none;
+}
+
+.species.inat\:\:seen .seen-badge {
+  display: inline;
+}
+
+.taxonomy,
+.uk-count {
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+.species .extra-photos {
+  grid-template-columns: 1fr;
+}
+
+.species .extra-photos img {
+  height: auto;
+  max-height: 50vh;
+  object-fit: contain;
+}
