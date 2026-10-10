@@ -1,0 +1,39 @@
+[project]
+name = "inat-anki"
+version = "0.1.0"
+description = "Build an Anki deck from your research-grade iNaturalist observations"
+readme = "README.md"
+authors = [
+    { name = "Tom Hodgson", email = "trademarkhodgson@gmail.com" }
+]
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = [
+    "genanki>=0.13.1",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+inat-anki = "inat_anki.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.23,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "responses>=0.26.3",
+    "ruff>=0.17.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,126 @@
+# iNaturalist API notes
+
+Findings from checking the live API on 2026-10-10 (SPEC section 2), using the
+unauthenticated v1 API. The scripts that produced them are in `scripts/verify_api*.py`.
+Raw responses are written to `scripts/out/` (git-ignored). Anonymised fixtures built
+from them (`scripts/make_fixtures.py`) are in `tests/fixtures/`.
+
+The test account has 71 research-grade observations (155 observations in total), 76
+photos, no sound-only research-grade observations, and 65 distinct taxa.
+
+## 1. UK place ID: confirmed
+
+`GET /v1/places/autocomplete?q=United Kingdom` returns `id: 6857`, `name: "United Kingdom"`,
+`admin_level: 0` as its first result. It is a config value (`preferred_place_id`), with
+6857 as the default.
+
+## 2. Common-name resolution: confirmed, with caveats
+
+`locale=en&preferred_place_id=6857` on `/v1/observations` changes
+`taxon.preferred_common_name` to the UK name where iNat has one. On the test account,
+10 of 71 observations differ from `locale=en` alone:
+
+| Scientific name | `locale=en` | `locale=en&preferred_place_id=6857` |
+|---|---|---|
+| *Medicago sativa* | Alfalfa | Lucerne |
+| *Sturnus vulgaris* | European Starling | Common Starling |
+| *Philaenus spumarius* | Meadow Spittlebug | Common Froghopper |
+| *Araneus diadematus* | Cross Orbweaver | European Garden Spider |
+| *Apioperdon pyriforme* | Pear-shaped Puffball | Stump Puffball |
+| *Halyomorpha halys* | Brown Marmorated Stink Bug | Marbled shield bug |
+
+- *Erithacus rubecula* gives "European Robin" and *Larus argentatus* gives "European
+  Herring Gull" **with or without** the UK place. Most birds have no UK-specific name
+  in iNat. For example, *Turdus merula* lists "Common Blackbird" and "Blackbird" as `en`
+  names, but neither is tied to a place, so "Eurasian Blackbird" wins. This is iNat's
+  data, not a bug in our request.
+- `locale=en-GB` gives the same results as `locale=en` combined with the UK place.
+  We use `locale=en`, as the spec says.
+- Capitalisation is inconsistent in iNat's data ("red campion", "common hop", "Marbled
+  shield bug"). Names are shown exactly as returned; we don't normalise case.
+- **`taxon_name=` is a fuzzy match**: `taxon_name=Pica pica` returned an "Orange Chat"
+  observation. Always filter by `taxon_id`. This matters for the future `--taxon-id`
+  flag.
+- Some taxa have no common name (`preferred_common_name` absent), for example
+  *Cirsium monspessulanum*.
+
+## 3. Photo URL sizes: confirmed on both hosts
+
+`photos[].url` is the `square` size, for example
+`https://static.inaturalist.org/photos/211141858/square.jpeg`. Replacing `square` with
+`medium`, `large` or `original` returns 200 on both hosts.
+
+| Host | square | medium | large |
+|---|---|---|---|
+| `static.inaturalist.org` (all photos on the test account) | 6.4 KB | 165 KB | 661 KB |
+| `inaturalist-open-data.s3.amazonaws.com` (CC-licensed photos) | 3.0 KB | 70 KB | 212 KB |
+
+- **Extensions vary**: `.jpeg` (older photos) and `.jpg` (newer). Take the extension from
+  the URL when building media filenames, rather than assuming `.jpg`.
+- The spec's 250 KB estimate for `large` can be well under the real size (661 KB in the
+  sample). The estimate is replaced by real sizes once the cache has some.
+- Observation photos in `photos[]` come in the same order as `observation_photos[].position`
+  (checked on all 71 observations), so `photos[0]` is the lead photo.
+
+### CORS (web-app risk from SPEC section 11)
+
+- `inaturalist-open-data.s3.amazonaws.com` returns `Access-Control-Allow-Origin: *`.
+- `static.inaturalist.org` returns **no** CORS header, on both `HEAD` and `GET` with an
+  `Origin` header.
+
+All-rights-reserved photos, which includes **all** of the test account's photos, are
+served from `static.inaturalist.org`. So the browser app **cannot** `fetch()` the user's
+own photos into an `.apkg`. It would have to fall back to hotlinked `<img src>`, or use a
+proxy. This risk is now confirmed rather than hypothetical.
+
+## 4. Photo licence fields: confirmed
+
+All-rights-reserved photos have `license_code: null` and a populated `attribution`:
+`"(c) <name>, all rights reserved"`. CC photos have, for example, `license_code: "cc-by"`
+and `attribution: "(c) <name>, some rights reserved (CC BY)"`. Codes are lower case.
+
+## 5. Time fields: confirmed, with one gotcha
+
+- `time_observed_at`: ISO 8601 with the **local offset in effect at the time**, for example
+  `"2022-07-03T15:51:33+01:00"` (BST) and `"2022-08-31T11:36:39+03:00"` (EEST). Its wall
+  time matches `observed_on_string` (`"2022-07-03 15:51:33"`).
+- `observed_time_zone`: an IANA name, for example `"Europe/London"`.
+- `time_zone_offset`: the zone's **standard** offset (`"+00:00"` for London, even in
+  July). **Do not use it.** It is not DST-aware.
+- `observed_on`: `"YYYY-MM-DD"`, the local date.
+- To render local time, parse `time_observed_at` with `datetime.fromisoformat` and use
+  its wall time as is. If `time_observed_at` is null, render the date only, from
+  `observed_on`.
+- None of the test account's observations lack a time. The no-time case is a synthetic
+  fixture.
+
+## 6. Obscured locations: confirmed
+
+On obscured observations (4 on the test account; all checked anonymously):
+
+- `obscured: true` is the authoritative flag. It is set by `geoprivacy: "obscured"` **or**
+  `taxon_geoprivacy: "obscured"` (seen with `geoprivacy: null`).
+- `location` is still returned, but it's a **randomised** point, with
+  `public_positional_accuracy` of roughly 25 to 31 km. `positional_accuracy` still shows
+  the observer's original accuracy, which is misleading next to a randomised point.
+- `place_guess` is coarsened, for example `"England, GB"` or `"Hertfordshire, England, GB"`.
+- So: on obscured observations, render `Coordinates` empty and append
+  `(location obscured)` to `Place`. On non-obscured observations, show
+  `public_positional_accuracy` as the ± value.
+- **Unverified:** there's no `geoprivacy: "private"` example on the test account. Private
+  observations are expected to return `location: null` (and possibly a null
+  `place_guess`) to anonymous clients, so the code treats them like the no-location
+  fixture.
+
+## 7. Taxon ancestors (for order and family tags)
+
+- `/v1/observations` returns `taxon.ancestor_ids` but **not** `taxon.ancestors`. The
+  `/v1/taxa` lookup is therefore the normal path, not the fallback.
+- `GET /v1/taxa/{id1,id2,...}` (comma-separated, up to 30) returns each taxon with a full
+  `ancestors[]` array (`id`, `name`, `rank`, `preferred_common_name`). One call per 30
+  **observation taxa** gives order and family directly: 3 calls for 65 taxa, cached in
+  state afterwards.
+- The search form `GET /v1/taxa?id=...` returns the ancestors themselves, without nested
+  ancestors. Using it would mean looking up every ancestor ID, so we don't.
+- Some ancestors have no common name (for example *Pezizales*). Tags use scientific names
+  only.
