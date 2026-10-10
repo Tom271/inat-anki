@@ -1,0 +1,89 @@
+# UK trees for the v2 "Trees" set.
+# Source: Woodland Trust, A-Z of British trees (79 entries, native, naturalised and
+# widely planted), https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/a-z-of-british-trees/
+# Copper beech and Irish yew are cultivars of beech and yew, so they are not separate
+# entries. Two common planted non-natives are added at the end.
+# Names were resolved against iNaturalist on 2026-10-10 (scripts/verify_v2_sets.py). The iNat name
+# differs where iNat uses a newer name (for example, whitebeam is now Aria edulis). The IDs are
+# the species or hybrid taxa, not the same-named "complex" taxa iNat also has.
+#
+# taxon_id	inat_name	listed_as
+966205	Alnus glutinosa	Alder
+55972	Frangula alnus	Alder buckthorn
+469472	Malus domestica	Apple
+125440	Fraxinus excelsior	Ash
+47571	Populus tremula	Aspen
+54227	Fagus sylvatica	Beech, common
+119061	Betula pubescens	Birch, downy
+83992	Betula pendula	Birch, silver
+55811	Prunus spinosa	Blackthorn
+133397	Buxus sempervirens	Box, common
+54811	Rhamnus cathartica	Buckthorn, purging
+136150	Cedrus libani	Cedar
+143793	Prunus padus	Cherry, bird
+68763	Prunus cerasus	Cherry, sour
+61964	Prunus avium	Cherry, wild
+121763	Castanea sativa	Chestnut, sweet
+61223	Malus sylvestris	Crab apple
+76237	Chamaecyparis lawsoniana	Cypress, Lawson
+1515671	× Hesperotropsis leylandii	Cypress, Leyland
+155124	Cornus sanguinea	Dogwood
+765394	Sambucus nigra	Elder
+1567961	Ulmus procera	Elm, English
+79461	Ulmus minor	Elm, field
+1571260	Ulmus × hollandica	Elm, Huntingdon
+170056	Ulmus glabra	Elm, wych
+323288	Eucalyptus gunnii	Eucalyptus
+59747	Larix decidua	European larch
+48256	Pseudotsuga menziesii	Fir, Douglas
+55969	Viburnum opulus	Guelder rose
+51147	Crataegus monogyna	Hawthorn
+54428	Crataegus laevigata	Hawthorn, Midland
+54491	Corylus avellana	Hazel
+48254	Tsuga heterophylla	Hemlock, western
+53856	Ilex aquifolium	Holly
+55801	Carpinus betulus	Hornbeam
+84298	Aesculus hippocastanum	Horse chestnut
+58725	Juniperus communis	Juniper
+410499	Tilia × europaea	Lime, common
+169761	Tilia platyphyllos	Lime, large-leaved
+132600	Tilia cordata	Lime, small-leaved
+56193	Acer campestre	Maple, field
+54763	Acer platanoides	Maple, Norway
+126404	Araucaria araucana	Monkey puzzle
+56133	Quercus robur	Oak, English
+78805	Quercus ilex	Oak, holm
+49005	Quercus rubra	Oak, red
+200942	Quercus petraea	Oak, sessile
+135408	Quercus cerris	Oak, Turkey
+63951	Pyrus communis	Pear
+338408	Pyrus cordata	Pear, Plymouth
+135790	Pinus nigra	Pine, black
+58722	Pinus sylvestris	Pine, Scots
+552449	Platanus × hispanica	Plane, London
+63735	Prunus domestica	Plum
+55837	Prunus cerasifera	Plum, cherry
+47565	Populus nigra	Poplar, black
+47570	Populus alba	Poplar, white
+56063	Sorbus aucuparia	Rowan
+55847	Euonymus europaeus	Spindle
+63567	Picea abies	Spruce, Norway
+68131	Picea sitchensis	Spruce, Sitka
+119791	Acer pseudoplatanus	Sycamore
+63935	Juglans regia	Walnut
+54504	Juglans nigra	Walnut, black
+124741	Viburnum lantana	Wayfaring tree
+48252	Thuja plicata	Western red cedar
+900799	Aria edulis	Whitebeam
+1357705	Hedlundia arranensis	Whitebeam, Arran
+1277890	Aria rupicola	Whitebeam, rock
+1277891	Torminalis glaberrima	Wild service tree
+168349	Salix pentandra	Willow, bay
+495238	Salix × fragilis	Willow, crack
+55846	Salix caprea	Willow, goat
+168326	Salix cinerea	Willow, grey
+55822	Salix viminalis	Willow, osier
+54841	Salix alba	Willow, white
+47553	Taxus baccata	Yew
+143786	Larix kaempferi	Japanese larch (added)
+125742	Prunus serrulata	Japanese cherry (added)

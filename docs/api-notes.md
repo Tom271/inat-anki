@@ -153,3 +153,34 @@ From `scripts/verify_v2.py`. These checks underpin SPEC-v2.md.
   several *Artemisia* species, for example. Filter results down to the listed IDs.
 - **Votes:** `order_by=votes` makes little difference, because most observations have 0
   or 1 votes.
+
+### 8.1 Set definitions: checked on 2026-10-10
+
+From `scripts/verify_v2_sets.py` and `scripts/verify_v2_trees_resolve.py`.
+
+- **More taxon IDs:**
+  - Insecta 47158; Poaceae 47434; Anthocerotophyta 56327; Rhodophyta 57774;
+    Chlorophyta 50863; Ulvophyceae 51429; Phaeophyceae 48220;
+  - Echinodermata 47549; Cnidaria 47534; Cirripedia 210289; Brachyura 121639;
+    Polyplacophora 47429;
+  - Littorinidae 48918; Patellidae 51740; Mytilidae 50600; Cardiidae 50597;
+    Trochidae 53830; Muricidae 50766;
+  - Domestic mammals: *Homo sapiens* 43584; *Canis familiaris* 47144; *Felis catus*
+    118552; *Bos taurus* 74113; *Ovis aries* 121578; *Sus scrofa domesticus* 324492
+    (a subspecies; *Sus domesticus* doesn't exist on iNat).
+- **Research grade excludes captive and cultivated observations.** `species_counts` gives
+  identical results with and without `captive=false`. So no domestic mammal appears in
+  the top 15 UK research-grade mammals.
+- **Planted trees** are casual grade (cultivated). With `quality_grade=research,casual`,
+  monkey puzzle, Japanese cherry, Lawson cypress, box and common lime enter the top 50
+  trees.
+- **Name clash with "complex" taxa.** `/v1/taxa?q=Quercus robur` returns both the species
+  (56133) and a same-named `complex` (1520309) that has more observations. The same
+  applies to *Acer pseudoplatanus*, *Crataegus monogyna*, *Crataegus laevigata*,
+  *Sambucus nigra*, *Viburnum opulus*, *Ulmus minor*, *Quercus ilex* and *Quercus
+  petraea*. When resolving a name, prefer rank `species` or `hybrid`.
+- **Hybrids** (*Platanus × hispanica*, *Tilia × europaea*, *Salix × fragilis*,
+  *Ulmus × hollandica*) have rank `hybrid`. `rank=species` drops them; use
+  `rank=species,hybrid`.
+- **Limits:** `species_counts` returns 500 results with `per_page=500`, and
+  `/v1/observations?id=` returned all 71 of 71 requested IDs.
