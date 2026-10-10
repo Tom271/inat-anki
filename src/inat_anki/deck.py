@@ -75,6 +75,7 @@ def build_package(notes: Iterable[Note], media_dir: Path, out: Path) -> list[str
     os.close(fd)
     try:
         genanki.Package(deck, media_files=[str(p) for p in media.values()]).write_to_file(tmp)
+        os.chmod(tmp, 0o644)  # mkstemp creates 0600; this is a normal user file
         os.replace(tmp, out)
     except BaseException:
         Path(tmp).unlink(missing_ok=True)
