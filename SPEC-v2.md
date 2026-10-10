@@ -28,7 +28,7 @@ AnkiWeb, with attribution on each card.
 | Ferns | Part of "Plants". |
 | Mammals | Exclude domestic species. Feral populations are included. |
 | Species already observed | **Tagged `inat::seen`.** This is in scope, not optional (section 5.2). |
-| Sets | The 8 originally listed, plus Insects (butterflies and all other insects, as one set), Grasses, Liverworts and Seashore. |
+| Sets | The 8 originally listed, plus Insects (50: butterflies and all other insects, as one set), Grasses (20: true grasses only), Liverworts (10) and Seashore (20). |
 
 ## 3. Facts checked against the live API (2026-10-10)
 
@@ -123,11 +123,11 @@ A **set** is one subdeck. The set definitions are data, not code, and are shippe
 | Birds | 50 | `taxon_id = [3]` |
 | Mammals | 10 | `taxon_id = [40151]`, `without_taxon_id = [43584, 47144, 118552, 74113, 121578, 324492]` |
 | Reptiles and amphibians | 20 | `taxon_id = [26036, 20978]` |
-| Insects | **50** (open question 1) | `taxon_id = [47158]` |
+| Insects | 50 | `taxon_id = [47158]` |
 | Seashore | 20 | `taxon_id =` the 14 seashore groups in section 3.1 |
 | Trees | 50 | `species_list = "lists/uk-trees.txt"`, `quality_grade = "research,casual"` |
 | Plants | 100 | `taxon_id = [47126]`, `without_taxon_id = [311249, 64615, 56327, 57774, 50863, 47434]`, `exclude_sets = ["trees"]`. Ferns are included. |
-| Grasses | **20** (open question 1) | `taxon_id = [47434]` |
+| Grasses | 20 | `taxon_id = [47434]`: true grasses only. Sedges and rushes stay in Plants. |
 | Mosses | 10 | `taxon_id = [311249]` |
 | Liverworts | 10 | `taxon_id = [64615]` |
 | Fungi | 50 | `taxon_id = [47170]`, `without_taxon_id = [54743]`, `exclude_sets = ["lichens"]` |
@@ -441,8 +441,6 @@ Acceptance, done manually:
 
 ## 12. Open questions
 
-1. **Insects and Grasses counts:** none were given, so this spec uses **50 insects** and
-   **20 grasses**. The UK has about 59 butterfly species alone, so 50 insects will be mostly
-   ladybirds, butterflies, common moths, bees and hoverflies.
-2. **Grasses:** Poaceae only, or also sedges (Cyperaceae) and rushes (Juncaceae)? This
-   spec uses Poaceae only. Sedges and rushes stay in Plants.
+None. The last two were settled on 2026-10-10: 50 insects and 20 grasses, and Grasses
+means true grasses (Poaceae) only, with sedges (Cyperaceae) and rushes (Juncaceae) staying
+in Plants.
